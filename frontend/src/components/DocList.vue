@@ -1,6 +1,15 @@
 <template>
-  <div>
-    <p v-for="doc in docList" :key="doc.id">{{ doc.title }}</p>
+  <div class="columns">
+    <div class="column is-three-quarters">
+      <ul>
+        <li v-for="doc in docList" :key="doc.id">
+          <section class="section">
+            <h1 class="title">{{ doc.title }}</h1>
+            <p>summary...</p>
+          </section>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
