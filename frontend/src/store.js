@@ -14,12 +14,27 @@ export default new Vuex.Store({
     setDocs(state, docs) {
       state.docs = docs;
     },
+    addDoc(state, newDoc) {
+      state.docs.unshift(newDoc);
+    },
   },
   actions: {
     fetchDocs({ commit }) {
       httpClient.get('/docs')
         .then((response) => {
           commit('setDocs', response.data.docs);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    createDoc({ commit }, newDoc) {
+      httpClient.post('/doc', {
+        title: newDoc.title,
+        body: newDoc.body,
+      })
+        .then((response) => {
+          commit('addDoc', response.data.doc);
         })
         .catch((error) => {
           console.error(error);
