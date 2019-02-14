@@ -19,7 +19,7 @@ export default new Vuex.Store({
     fetchDocs({ commit }) {
       httpClient.get('/docs')
         .then((response) => {
-          commit('setDocs', response.data);
+          commit('setDocs', response.data.docs);
         })
         .catch((error) => {
           console.error(error);
