@@ -4,16 +4,21 @@
       <b-input v-model="title" placeholder="タイトル"></b-input>
     </b-field>
     <hr>
-    <div class="columns">
+    <div class="columns body-area">
       <div class="column is-half">
         <div class="editor">
           <b-field>
-            <b-input type="textarea" placeholder="本文" rows="20" @input="updateBody" :value="body"/>
+            <b-input type="textarea" placeholder="本文" @input="updateBody" :value="body"/>
           </b-field>
         </div>
       </div>
       <div class="column is-half">
         <preview :compiled-html="compiledHtml"/>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <button class="button primary is-pulled-right" type="button">保存</button>
       </div>
     </div>
   </div>
@@ -47,3 +52,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.body-area {
+  height: calc(100vh - 200px);
+}
+</style>
