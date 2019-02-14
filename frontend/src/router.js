@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import DocList from './components/DocList.vue';
+import CreateDoc from './components/CreateDoc.vue';
 
 Vue.use(Router);
 
@@ -12,6 +13,10 @@ export default new Router({
       path: '/',
       name: 'doc-list',
       component: DocList,
+    },
+    {
+      path: '/docs/new',
+      component: CreateDoc,
     },
     {
       path: '/about',
