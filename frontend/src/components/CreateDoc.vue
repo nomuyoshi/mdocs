@@ -18,7 +18,9 @@
     </div>
     <div class="columns">
       <div class="column">
-        <button class="button primary is-pulled-right" type="button">保存</button>
+        <button class="button primary is-pulled-right" type="button" @click="createDoc">
+          保存
+        </button>
       </div>
     </div>
   </div>
@@ -46,6 +48,13 @@ export default {
     updateBody: debounce(function (value) {
       this.body = value;
     }, 300),
+    createDoc() {
+      const newDoc = {
+        title: this.title,
+        body: this.body,
+      };
+      this.$store.dispatch('createDoc', newDoc);
+    },
   },
   components: {
     Preview,

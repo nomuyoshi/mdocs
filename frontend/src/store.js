@@ -29,7 +29,7 @@ export default new Vuex.Store({
         });
     },
     createDoc({ commit }, newDoc) {
-      httpClient.post('/doc', {
+      httpClient.post('/docs/create', {
         title: newDoc.title,
         body: newDoc.body,
       })

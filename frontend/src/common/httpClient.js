@@ -1,6 +1,7 @@
 import axios from 'axios';
-import * as Cookie from 'js-cookie';
+import * as Cookies from 'js-cookie';
 
+console.log(Cookies.get('csrftoken'));
 const httpClient = axios.create({
   baseURL: process.env.VUE_APP_API_BASE_URL,
   headers: { 'X-CSRFToken': Cookies.get('csrftoken') },
