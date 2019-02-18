@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import router from './router';
 
 Vue.use(Vuex);
 
@@ -33,6 +34,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           commit('addDoc', response.data.doc);
+          router.push('/');
         })
         .catch((error) => {
           console.error(error);
