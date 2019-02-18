@@ -9,6 +9,9 @@ export default new Vuex.Store({
   state: {
     docs: [],
   },
+  getters: {
+    getDocById: state => id => state.docs.find(doc => doc.id === id),
+  },
   mutations: {
     setDocs(state, docs) {
       state.docs = docs;

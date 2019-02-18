@@ -3,10 +3,11 @@
     <div class="column is-three-quarters">
       <ul>
         <li v-for="doc in docList" :key="doc.id">
-          <section class="section">
-            <h1 class="title">{{ doc.title }}</h1>
-            <p>summary...</p>
-          </section>
+          <router-link :to="{ name: 'doc', params: { id: doc.id } }">
+            <section class="section">
+              <h1 class="title">{{ doc.title }}</h1>
+            </section>
+          </router-link>
         </li>
       </ul>
     </div>
