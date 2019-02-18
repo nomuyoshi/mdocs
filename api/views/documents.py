@@ -1,7 +1,7 @@
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_GET
-
+from django.forms.models import model_to_dict
 from ..models import Document
 
 @require_GET
@@ -10,8 +10,10 @@ def index(request):
     return JsonResponse({ 'docs': list(docs) })
 
 @require_POST
-def create(request, title, body):
-    doc = Document(title = title, body = body)
+def create(request):
+    params = json.loads(request.body)
+    doc = Document(title = params['title'], body = params['body'])
     doc.save()
-    return JsonResponse({ 'doc': doc })
+    data = model_to_dict(doc)
+    return JsonResponse({ 'doc': data })
 
