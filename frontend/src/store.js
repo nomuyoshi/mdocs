@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import httpClient from './common/httpClient';
+import axios from 'axios';
 
 Vue.use(Vuex);
-
-console.log(httpClient.defaults.baseURL);
 
 export default new Vuex.Store({
   state: {
@@ -20,7 +18,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchDocs({ commit }) {
-      httpClient.get('/docs')
+      axios.get('/docs')
         .then((response) => {
           commit('setDocs', response.data.docs);
         })
@@ -29,7 +27,7 @@ export default new Vuex.Store({
         });
     },
     createDoc({ commit }, newDoc) {
-      httpClient.post('/docs/create', {
+      axios.post('/docs/create', {
         title: newDoc.title,
         body: newDoc.body,
       })
