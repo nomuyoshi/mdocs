@@ -19,6 +19,7 @@ from .views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('social_django.urls', namespace='social')),
     path('api/', include('api.urls')),
     re_path(r'.*', index, name='app'),
 ]
