@@ -6,13 +6,13 @@ from ..models import Document
 
 @require_GET
 def index(request):
-    docs = Document.objects.order_by('-created_at').values()
+    docs = Document.objects.filter(user=request.user).order_by('-created_at').values()
     return JsonResponse({ 'docs': list(docs) })
 
 @require_POST
 def create(request):
     params = json.loads(request.body)
-    doc = Document(title = params['title'], body = params['body'])
+    doc = Document(title = params['title'], body = params['body'], user = request.user)
     doc.save()
     data = model_to_dict(doc)
     return JsonResponse({ 'doc': data })
