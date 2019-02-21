@@ -1,7 +1,7 @@
 <template>
   <div class="columns">
     <div class="column is-three-quarters">
-      <section class="section">
+      <section class="section" v-if="doc">
         <div class="container">
           <h1 class="title">{{ doc.title }}</h1>
           <hr/>
