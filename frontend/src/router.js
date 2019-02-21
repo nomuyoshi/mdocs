@@ -16,13 +16,13 @@ export default new Router({
       component: DocList,
     },
     {
-      path: '/docs/:id',
-      name: 'doc',
-      component: DocDetail,
-    },
-    {
       path: '/docs/new',
       component: CreateDoc,
+    },
+    {
+      path: '/docs/:id(\\d+)',
+      name: 'doc',
+      component: DocDetail,
     },
     {
       path: '/about',
