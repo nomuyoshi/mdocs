@@ -50,13 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webpack_loader',
     'social_django',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -64,9 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'backend.middlewares.require_login_middleware.RequoreLoginMiddleware',
 ]
-
-CORS_ORIGIN_ALLOW_ALL = DEBUG
-CORS_ALLOW_CREDENTIALS = DEBUG
 
 ROOT_URLCONF = 'backend.urls'
 
