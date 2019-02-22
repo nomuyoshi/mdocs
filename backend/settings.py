@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webpack_loader',
     'social_django',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -1,8 +1,5 @@
-from django.urls import path
-from api import views
+from rest_framework import routers
+from .views import DocumentViewSet
 
-app_name = 'api'
-urlpatterns = [
-    path('docs', views.documents.index),
-    path('docs/create', views.documents.create),
-]
+router = routers.DefaultRouter()
+router.register(r'docs', DocumentViewSet)
