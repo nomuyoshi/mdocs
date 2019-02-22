@@ -1,2 +1,0 @@
-from .documents import index
-
