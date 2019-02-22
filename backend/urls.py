@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from .views import index
+from api.urls import router as api_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('social_django.urls', namespace='social')),
-    path('api/', include('api.urls')),
-    re_path(r'.*', index, name='app'),
+    path('api/', include(api_router.urls)),
+#    re_path(r'.*', index, name='app'),
 ]
