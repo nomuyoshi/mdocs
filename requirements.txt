@@ -2,3 +2,5 @@ Django==2.1.5
 django-webpack-loader==0.6.0
 social-auth-app-django
 django-environ
+djangorestframework
+django-filter
