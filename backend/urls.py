@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-from .views import index
+from django.contrib.auth import views as auth_views
 from api.urls import router as api_router
+from .views import index
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('auth/', include('social_django.urls', namespace='social')),
     path('api/', include(api_router.urls)),
-#    re_path(r'.*', index, name='app'),
+    re_path(r'.*', index, name='app'),
 ]
