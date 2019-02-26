@@ -14,6 +14,7 @@
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.11",
     "marked": "^0.6.0",
+    "moment": "^2.24.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -30,6 +31,7 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "moment-locales-webpack-plugin": "^1.0.7",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21",
