@@ -12,6 +12,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'root',
+      component: DocList,
+    },
+    {
+      path: '/docs',
       name: 'doc-list',
       component: DocList,
     },

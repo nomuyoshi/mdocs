@@ -9,7 +9,7 @@ import App from './App.vue';
 
 axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 axios.defaults.headers.common.Accept = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers['Content-Type'] = 'application/json';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
