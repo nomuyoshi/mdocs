@@ -22,7 +22,7 @@ export default new Vuex.Store({
   },
   actions: {
     fetchDocs({ commit }) {
-      axios.get('/docs')
+      axios.get('/docs/')
         .then((response) => {
           commit('setDocs', response.data);
         })
@@ -31,12 +31,12 @@ export default new Vuex.Store({
         });
     },
     createDoc({ commit }, newDoc) {
-      axios.post('/docs/create', {
+      axios.post('/docs/', {
         title: newDoc.title,
         body: newDoc.body,
       })
         .then((response) => {
-          commit('addDoc', response.data.doc);
+          commit('addDoc', response.data);
           router.push('/');
         })
         .catch((error) => {
