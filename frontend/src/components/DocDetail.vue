@@ -3,7 +3,20 @@
     <div class="column is-three-quarters">
       <section class="section" v-if="doc">
         <div class="container">
-          <h1 class="title">{{ doc.title }}</h1>
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <p class="title">{{ doc.title }}</p>
+              </div>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
+                  <b-icon pack="fas" icon="edit" type="is-info"></b-icon>
+                </router-link>
+              </div>
+            </div>
+          </div>
           <hr/>
           <preview :compiled-html="compiledHtml"/>
         </div>
