@@ -4,7 +4,7 @@
       <ul>
         <li v-for="doc in docList" :key="doc.id">
           <section class="section">
-            <router-link :to="{ name: 'doc', params: { id: doc.id } }">
+            <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
               <h1 class="title">{{ doc.title }}</h1>
             </router-link>
             <b-taglist>

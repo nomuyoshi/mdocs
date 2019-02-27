@@ -18,7 +18,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <button class="button primary is-pulled-right" type="button" @click="createDoc">
+        <button class="button primary is-pulled-right" type="button" @click="onSubmit">
           保存
         </button>
       </div>
@@ -27,13 +27,16 @@
 </template>
 
 <script>
+import axios from 'axios';
 import marked from 'marked';
 import { debounce } from 'lodash';
+import router from '../router';
 import Preview from './Preview.vue';
 
 export default {
   data() {
     return {
+      id: this.$route.params.id || null,
       title: '',
       body: '',
     };
@@ -42,18 +45,46 @@ export default {
     compiledHtml() {
       return marked(this.body, { sanitize: true, breaks: true });
     },
+    apiUrl() {
+      return this.id ? `/docs/${this.id}/` : '/docs/';
+    },
+    httpMethod() {
+      return this.id ? 'PUT' : 'POST';
+    },
+  },
+  mounted() {
+    if (!this.id) { return; }
+
+    axios.get(`/docs/${this.id}/`)
+      .then((response) => {
+        const { title, body } = response.data;
+        this.title = title;
+        this.body = body;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
   methods: {
     // eslint-disable-next-line func-names
     updateBody: debounce(function (value) {
       this.body = value;
     }, 300),
-    createDoc() {
-      const newDoc = {
-        title: this.title,
-        body: this.body,
-      };
-      this.$store.dispatch('createDoc', newDoc);
+    onSubmit() {
+      axios({
+        method: this.httpMethod,
+        url: this.apiUrl,
+        data: {
+          title: this.title,
+          body: this.body,
+        },
+      })
+        .then(() => {
+          router.push('/');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
   components: {
