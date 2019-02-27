@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications group="notifications" position="bottom right" />
     <div id="nav">
       <router-link to="/docs/new">新規作成</router-link>
     </div>
