@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
 import axios from 'axios';
+import Notifications from 'vue-notification';
 
 import router from './router';
 import store from './store';
@@ -16,6 +17,7 @@ axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true;
 
 Vue.use(Buefy);
+Vue.use(Notifications);
 
 Vue.config.productionTip = false;
 

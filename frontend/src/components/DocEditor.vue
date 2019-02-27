@@ -1,14 +1,21 @@
 <template>
   <div>
     <b-field>
-      <b-input v-model="title" placeholder="タイトル"></b-input>
+      <b-input v-model="title" placeholder="タイトル" maxlength="100" required></b-input>
     </b-field>
     <hr>
     <div class="columns body-area">
       <div class="column is-half">
         <div class="editor">
           <b-field>
-            <b-input type="textarea" placeholder="本文" @input="updateBody" :value="body"/>
+            <b-input
+              type="textarea"
+              placeholder="本文"
+              @input="updateBody"
+              :value="body"
+              maxlength="10000"
+              required
+            />
           </b-field>
         </div>
       </div>
@@ -39,6 +46,7 @@ export default {
       id: this.$route.params.id || null,
       title: '',
       body: '',
+      errors: {},
     };
   },
   computed: {
@@ -61,8 +69,14 @@ export default {
         this.title = title;
         this.body = body;
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        this.$notify({
+          group: 'notifications',
+          type: 'error',
+          title: 'エラー',
+          text: 'データが存在しません',
+        });
+        router.push('/');
       });
   },
   methods: {
@@ -83,7 +97,13 @@ export default {
           router.push('/');
         })
         .catch((error) => {
-          console.error(error);
+          this.errors = error.response.data;
+          this.$notify({
+            group: 'notifications',
+            type: 'error',
+            title: 'エラー',
+            text: '入力内容を確認してください',
+          });
         });
     },
   },
