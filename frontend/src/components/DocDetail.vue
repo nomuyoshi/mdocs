@@ -36,6 +36,7 @@ import marked from 'marked';
 
 import router from '../router';
 import Preview from './Preview.vue';
+import NotificationMixin from '../mixins/NotificationMixin';
 
 export default {
   data() {
@@ -44,9 +45,6 @@ export default {
       title: '',
       body: '',
     };
-  },
-  components: {
-    Preview,
   },
   computed: {
     compiledHtml() {
@@ -62,28 +60,25 @@ export default {
         this.body = body;
       })
       .catch(() => {
-        this.$notify({
-          group: 'notifications',
-          type: 'error',
-          title: 'エラー',
-          text: 'データが存在しません。',
-        });
+        this.notifyError('データが存在しません');
         router.push('/');
       });
   },
   methods: {
     onClickDelete() {
       axios.delete(`/docs/${this.id}/`)
-        .then(() => router.push('/'))
+        .then(() => {
+          this.notifySuccess('削除成功');
+          router.push('/');
+        })
         .catch(() => {
-          this.$notify({
-            group: 'notifications',
-            type: 'error',
-            title: 'エラー',
-            text: '削除できませんでした。時間をおいて再度お試しください。',
-          });
+          this.notifyError('削除できませんでした。時間をおいて再度お試しください。');
         });
     },
   },
+  components: {
+    Preview,
+  },
+  mixins: [NotificationMixin],
 };
 </script>

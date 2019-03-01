@@ -39,6 +39,7 @@ import marked from 'marked';
 import { debounce } from 'lodash';
 import router from '../router';
 import Preview from './Preview.vue';
+import NotificationMixin from '../mixins/NotificationMixin';
 
 export default {
   data() {
@@ -61,6 +62,7 @@ export default {
     },
   },
   mounted() {
+    this.notifySuccess();
     if (!this.id) { return; }
 
     axios.get(`/docs/${this.id}/`)
@@ -70,12 +72,7 @@ export default {
         this.body = body;
       })
       .catch(() => {
-        this.$notify({
-          group: 'notifications',
-          type: 'error',
-          title: 'エラー',
-          text: 'データが存在しません',
-        });
+        this.notifyError('データが存在しません');
         router.push('/');
       });
   },
@@ -98,18 +95,14 @@ export default {
         })
         .catch((error) => {
           this.errors = error.response.data;
-          this.$notify({
-            group: 'notifications',
-            type: 'error',
-            title: 'エラー',
-            text: '入力内容を確認してください',
-          });
+          this.notifyError('入力内容を確認してください');
         });
     },
   },
   components: {
     Preview,
   },
+  mixins: [NotificationMixin],
 };
 </script>
 
