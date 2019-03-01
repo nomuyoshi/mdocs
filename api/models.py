@@ -11,3 +11,16 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+class Tag(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
+
+class Tagging(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    document = models.ForeignKey(Document, on_delete=models.CASCADE)
+
