@@ -15,6 +15,7 @@ class Document(models.Model):
 class Tag(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=25)
+    documents = models.ManyToManyField(Document, through='Tagging')
 
     def __str__(self):
         return self.name
