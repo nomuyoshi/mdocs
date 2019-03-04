@@ -7,7 +7,7 @@ export default {
         title,
       });
     },
-    notifyError(text) {
+    notifyError(text = '時間をおいて再度お試しください') {
       this.$notify({
         group: 'notifications',
         type: 'error',
