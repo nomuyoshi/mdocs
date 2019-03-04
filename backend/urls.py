@@ -25,5 +25,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('auth/', include('social_django.urls', namespace='social')),
     path('api/', include(api_router.urls)),
-    re_path(r'.*', index, name='app'),
+    re_path(r'^(?!api/).*', index, name='app'),
 ]
