@@ -7,10 +7,7 @@
             <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
               <h1 class="title">{{ doc.title }}</h1>
             </router-link>
-            <b-taglist>
-              <b-tag>作成日: {{ doc.created_at | datetimeFormat }}</b-tag>
-              <b-tag>更新日: {{ doc.updated_at | datetimeFormat }}</b-tag>
-            </b-taglist>
+            <doc-tags :doc="doc" />
           </section>
         </li>
       </ul>
@@ -19,6 +16,8 @@
 </template>
 
 <script>
+import DocTags from './common/DocTags.vue';
+
 export default {
   computed: {
     docList() {
@@ -27,6 +26,9 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchDocs');
+  },
+  components: {
+    DocTags,
   },
 };
 </script>

@@ -38,7 +38,7 @@ import axios from 'axios';
 import marked from 'marked';
 import { debounce } from 'lodash';
 import router from '../router';
-import Preview from './Preview.vue';
+import Preview from './common/Preview.vue';
 import NotificationMixin from '../mixins/NotificationMixin';
 
 export default {
