@@ -1,8 +1,9 @@
 <template>
   <div>
     <b-field>
-      <b-input v-model="title" placeholder="タイトル" maxlength="100" required></b-input>
+      <b-input v-model="doc.title" placeholder="タイトル" maxlength="100" required></b-input>
     </b-field>
+    <tag-input :selected-tags="doc.tags" />
     <hr>
     <div class="columns body-area">
       <div class="column is-half">
@@ -12,7 +13,7 @@
               type="textarea"
               placeholder="本文"
               @input="updateBody"
-              :value="body"
+              :value="doc.body"
               maxlength="10000"
               required
             />
@@ -39,37 +40,38 @@ import marked from 'marked';
 import { debounce } from 'lodash';
 import router from '../router';
 import Preview from './common/Preview.vue';
+import TagInput from './common/TagInput.vue';
 import NotificationMixin from '../mixins/NotificationMixin';
 
 export default {
   data() {
     return {
-      id: this.$route.params.id || null,
-      title: '',
-      body: '',
+      doc: {
+        id: this.$route.params.id || null,
+        title: '',
+        body: '',
+        tags: [],
+      },
       errors: {},
     };
   },
   computed: {
     compiledHtml() {
-      return marked(this.body, { sanitize: true, breaks: true });
+      return marked(this.doc.body, { sanitize: true, breaks: true });
     },
     apiUrl() {
-      return this.id ? `/docs/${this.id}/` : '/docs/';
+      return this.doc.id ? `/docs/${this.doc.id}/` : '/docs/';
     },
     httpMethod() {
-      return this.id ? 'PUT' : 'POST';
+      return this.doc.id ? 'PUT' : 'POST';
     },
   },
   mounted() {
-    this.notifySuccess();
-    if (!this.id) { return; }
+    if (!this.doc.id) { return; }
 
-    axios.get(`/docs/${this.id}/`)
+    axios.get(`/docs/${this.doc.id}/`)
       .then((response) => {
-        const { title, body } = response.data;
-        this.title = title;
-        this.body = body;
+        this.doc = response.data;
       })
       .catch(() => {
         this.notifyError('データが存在しません');
@@ -79,15 +81,17 @@ export default {
   methods: {
     // eslint-disable-next-line func-names
     updateBody: debounce(function (value) {
-      this.body = value;
+      this.doc.body = value;
     }, 300),
     onSubmit() {
+      const { title, body } = this.doc;
+
       axios({
         method: this.httpMethod,
         url: this.apiUrl,
         data: {
-          title: this.title,
-          body: this.body,
+          title,
+          body,
         },
       })
         .then(() => {
@@ -101,6 +105,7 @@ export default {
   },
   components: {
     Preview,
+    TagInput,
   },
   mixins: [NotificationMixin],
 };
