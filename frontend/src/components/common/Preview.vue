@@ -3,11 +3,13 @@
 </template>
 
 <script>
-export default {
+const Preview = {
   props: {
     compiledHtml: String,
   },
 };
+
+export default Preview;
 </script>
 
 <style lang="scss" scoped>

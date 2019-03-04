@@ -6,10 +6,10 @@
           <div class="level">
             <div class="level-left">
               <div class="level-item">
-                <p class="title">{{ title }}</p>
+                <p class="title">{{ doc.title }}</p>
               </div>
               <div class="level-item">
-                <router-link :to="{ name: 'doc-edit', params: { id: id } }" class="button">
+                <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
                   <b-icon pack="fas" icon="edit" type="is-info"></b-icon>
                 </router-link>
               </div>
@@ -22,6 +22,7 @@
               </div>
             </div>
           </div>
+          <doc-tags :doc="doc" />
           <hr/>
           <preview :compiled-html="compiledHtml"/>
         </div>
@@ -35,29 +36,33 @@ import axios from 'axios';
 import marked from 'marked';
 
 import router from '../router';
-import Preview from './Preview.vue';
+import DocTags from './common/DocTags.vue';
+import Preview from './common/Preview.vue';
 import NotificationMixin from '../mixins/NotificationMixin';
 
 export default {
   data() {
     return {
-      id: this.$route.params.id,
-      title: '',
-      body: '',
+      doc: {
+        id: this.$route.params.id,
+        title: '',
+        body: '',
+        tags: [],
+        created_at: '',
+        updated_at: '',
+      },
     };
   },
   computed: {
     compiledHtml() {
-      if (!this.body) { return ''; }
-      return marked(this.body, { sanitize: true, breaks: true });
+      if (!this.doc.body) { return ''; }
+      return marked(this.doc.body, { sanitize: true, breaks: true });
     },
   },
   mounted() {
-    axios.get(`/docs/${this.id}/`)
+    axios.get(`/docs/${this.$route.params.id}/`)
       .then((response) => {
-        const { title, body } = response.data;
-        this.title = title;
-        this.body = body;
+        this.doc = response.data;
       })
       .catch(() => {
         this.notifyError('データが存在しません');
@@ -66,7 +71,7 @@ export default {
   },
   methods: {
     onClickDelete() {
-      axios.delete(`/docs/${this.id}/`)
+      axios.delete(`/docs/${this.doc.id}/`)
         .then(() => {
           this.notifySuccess('削除成功');
           router.push('/');
@@ -77,6 +82,7 @@ export default {
     },
   },
   components: {
+    DocTags,
     Preview,
   },
   mixins: [NotificationMixin],
