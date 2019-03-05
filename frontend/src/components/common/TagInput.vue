@@ -1,7 +1,7 @@
 <template>
   <b-field>
     <b-taginput
-      :value="selectedTags"
+      v-model="selectedTags"
       :data="filteredTags"
       autocomplete
       :allow-new="true"
@@ -35,21 +35,19 @@ const TagInput = {
       .then((response) => {
         this.tags = response.data;
       })
-      .catch((error) => {
+      .catch(() => {
         this.notifyError();
       });
   },
   methods: {
     getFilteredTags(text) {
       const keyword = text.toLowerCase();
-      const tags = this.tags.filter((tag) => {
-        return tag.name.toLowerCase().indexOf(keyword) >= 0;
-      });
-      this.filteredTags = tags
-    }
+      const tags = this.tags.filter(tag => tag.name.toLowerCase().indexOf(keyword) >= 0);
+      this.filteredTags = tags;
+    },
   },
   mixins: [NotificationMixin],
-}
+};
 
 export default TagInput;
 </script>
