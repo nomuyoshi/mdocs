@@ -84,15 +84,10 @@ export default {
       this.doc.body = value;
     }, 300),
     onSubmit() {
-      const { title, body } = this.doc;
-
       axios({
         method: this.httpMethod,
         url: this.apiUrl,
-        data: {
-          title,
-          body,
-        },
+        data: this.buildSubmitData(),
       })
         .then(() => {
           router.push('/');
@@ -101,6 +96,22 @@ export default {
           this.errors = error.response.data;
           this.notifyError('入力内容を確認してください');
         });
+    },
+    buildSubmitData() {
+      const { title, body } = this.doc;
+      // Buefyのtaginputだと新規タグが文字列になってしまうのでオブジェクトに変換
+      const tags = this.doc.tags.map((tag) => {
+        if (typeof tag === 'string') {
+          return { id: null, name: tag };
+        }
+        return tag;
+      });
+
+      return {
+        title,
+        body,
+        tags,
+      };
     },
   },
   components: {
