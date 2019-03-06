@@ -18,11 +18,23 @@ class DocumentSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
         doc = Document.objects.create(**validated_data)
+        tags = self.__tag_list(tags_data)
+        doc.tags.set(tags)
+        return doc
 
+    # TODO: transaction
+    def update(self, instance, validated_data):
+        tags_data = validated_data.pop('tags')
+        tags = self.__tag_list(tags_data)
+        instance.tags.set(tags)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+    def __tag_list(tags_data):
         tags = []
         for tag_data in tags_data:
             tag = Tag.objects.get_or_create(user=validated_data['user'], name=tag_data['name'])[0]
-            if tag: tags.append(tag)
+            tags.append(tag)
+        return tags
 
-        doc.tags.set(tags)
-        return doc
