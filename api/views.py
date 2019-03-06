@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from .models import Document
@@ -15,6 +16,14 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def perform_update(self, serializer):
         serializer.save(user=self.request.user)
+
+    @transaction.atomic
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
+
+    @transaction.atomic
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
 
 class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
