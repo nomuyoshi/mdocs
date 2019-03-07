@@ -32,11 +32,7 @@ environ.Env.read_env()
 # False if not in os.environ
 DEBUG = env('DEBUG')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -148,6 +144,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#########################
+# WEBPACK_LOADER
+#########################
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': DEBUG,
@@ -156,6 +155,22 @@ WEBPACK_LOADER = {
     }
 }
 
+#########################
+# LOGIN, LOGOUT URL
+#########################
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/'
+
+########################
+# Social Login
+########################
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+#########################
+# Django REST Framework
+#########################
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}

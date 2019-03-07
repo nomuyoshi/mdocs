@@ -14,7 +14,6 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'title', 'body', 'tags', 'created_at', 'updated_at')
         read_only_fields = ('id', 'user')
 
-    # TODO: transaction
     def create(self, validated_data):
         tags_data = validated_data.pop('tags')
         doc = Document.objects.create(**validated_data)
@@ -22,7 +21,6 @@ class DocumentSerializer(serializers.ModelSerializer):
         doc.tags.set(tags)
         return doc
 
-    # TODO: transaction
     def update(self, instance, validated_data):
         tags_data = validated_data.pop('tags')
         tags = self.__tag_list(tags_data, validated_data['user'])

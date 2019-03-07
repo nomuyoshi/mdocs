@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 import re
-import pdb
 
 class RequoreLoginMiddleware:
     def __init__(self, get_response):
