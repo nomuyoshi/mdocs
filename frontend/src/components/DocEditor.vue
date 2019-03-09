@@ -1,36 +1,36 @@
 <template>
   <div>
     <b-field>
-      <b-input v-model="doc.title" placeholder="タイトル" maxlength="100" required></b-input>
+      <b-input
+        v-model="doc.title"
+        size="is-medium"
+        placeholder="タイトル"
+        maxlength="100"
+        required>
+      </b-input>
     </b-field>
     <tag-input :selected-tags="doc.tags" />
     <hr>
     <div class="columns body-area">
       <div class="column is-half">
-        <div class="editor">
-          <b-field>
-            <b-input
-              type="textarea"
-              placeholder="本文"
-              @input="updateBody"
-              :value="doc.body"
-              maxlength="10000"
-              required
-            />
-          </b-field>
-        </div>
+        <b-field>
+          <b-input type="textarea"
+            customClass="editor"
+            @input="updateBody"
+            :value="doc.body"
+            placeholder="本文"
+            maxlength="10000"
+            required
+          />
+        </b-field>
       </div>
       <div class="column is-half">
         <preview :compiled-html="compiledHtml"/>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        <button class="button primary is-pulled-right" type="button" @click="onSubmit">
-          保存
-        </button>
-      </div>
-    </div>
+    <button class="button is-primary is-pulled-right" type="button" @click="onSubmit">
+      保存
+    </button>
   </div>
 </template>
 
@@ -122,8 +122,27 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.body-area {
-  height: calc(100vh - 200px);
+<style lang="scss">
+.editor {
+  height: calc(100vh - 250px);
+  max-height: calc(100vh - 250px);
 }
+</style>
+
+<style lang="scss" scoped>
+.field {
+  margin-bottom: 0;
+}
+
+hr {
+  margin: 5px 0;
+}
+
+.body-area {
+  margin-bottom: 0;
+  .column {
+    padding-bottom: 0;
+  }
+}
+
 </style>
