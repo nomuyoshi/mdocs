@@ -2,6 +2,7 @@
   <b-field>
     <b-taginput
       v-model="selectedTags"
+      size="is-small"
       :data="filteredTags"
       autocomplete
       :allow-new="true"

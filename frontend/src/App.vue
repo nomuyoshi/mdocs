@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <notifications group="notifications" position="bottom right" />
+    <navbar/>
     <div class="container">
       <div class="columns">
         <div class="column is-3" v-show="sidebarVisible()">
@@ -15,10 +16,12 @@
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar.vue';
 
 const App = {
   components: {
+    Navbar,
     Sidebar,
   },
   methods: {
@@ -36,6 +39,10 @@ const App = {
 
 export default App;
 </script>
+
+<style lang="scss">
+@import './assets/application.scss';
+</style>
 
 <style lang="scss" scoped>
 #app {

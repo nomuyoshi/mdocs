@@ -1,11 +1,21 @@
 <template>
-  <div id="preview" v-html="compiledHtml"></div>
+  <div id="preview">
+    <div v-html="compiledHtml"></div>
+    <p class="has-text-grey-light" style="margin-top: 1em;" v-show="noData">
+      プレビューエリア
+    </p>
+  </div>
 </template>
 
 <script>
 const Preview = {
   props: {
     compiledHtml: String,
+  },
+  computed: {
+    noData() {
+      return this.compiledHtml.length === 0;
+    },
   },
 };
 
