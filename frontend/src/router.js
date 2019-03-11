@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import DocList from './components/DocList.vue';
 import DocEditor from './components/DocEditor.vue';
 import DocDetail from './components/DocDetail.vue';
+import NotFound from './components/NotFound.vue';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/docs/:id(\\d+)/edit',
       name: 'doc-edit',
       component: DocEditor,
+    },
+    {
+      path: '*',
+      name: 'not-found',
+      component: NotFound,
     },
   ],
 });
