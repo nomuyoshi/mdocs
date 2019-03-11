@@ -16,7 +16,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a href="/logout" class="button is-light">ログアウト</a>
+            <a href="/logout/" class="button is-light">ログアウト</a>
           </div>
         </div>
       </div>
