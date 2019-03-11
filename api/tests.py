@@ -18,6 +18,14 @@ class DocumentsApiTest(APITestCase):
         self.other_user_document = DocumentFactory.create(user=UserFactory.create())
         self.document.tags.add(self.tag)
 
+    def test_documents_list_unauthorized_user_response(self):
+        """
+          when an unauthorized user requests api, return 401
+        """
+        url = reverse('documents-list')
+        response = APIClient().get(url, None, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
     def test_documents_list_response(self):
         """
           test document list api response
@@ -28,6 +36,15 @@ class DocumentsApiTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]['user'], self.current_user.id)
+
+    def test_documents_detail_unauthorized_user_response(self):
+        """
+          when an unauthorized user requests api, return 401
+        """
+        url = reverse('documents-detail', kwargs={ 'pk': self.document.id })
+        response = APIClient().get(url, None, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_documents_detail_response(self):
         """
@@ -91,6 +108,14 @@ class DocumentsApiTest(APITestCase):
         self.assertEqual(data['body'], 'body(updated)')
         self.assertEqual(len(data['tags']), 1)
         self.assertEqual(data['tags'][0]['name'], 'python3')
+
+    def test_documents_delete_unauthorized_user_response(self):
+        """
+          when an unauthorized user requests api, return 401
+        """
+        url = reverse('documents-detail', kwargs={ 'pk': self.document.id })
+        response = APIClient().delete(url, None, format='json')
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_documents_delete_response(self):
         """
