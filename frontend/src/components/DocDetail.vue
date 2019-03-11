@@ -10,14 +10,14 @@
               </div>
               <div class="level-item">
                 <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
-                  <b-icon pack="fas" icon="edit" type="is-info"></b-icon>
+                  <b-icon icon="edit" type="is-info"></b-icon>
                 </router-link>
               </div>
             </div>
             <div class="level-right">
               <div class="level-item">
                 <button class="button" type="button" @click="onClickDelete">
-                  <b-icon pack="fas" icon="trash-alt" type="is-danger"></b-icon>
+                  <b-icon icon="trash-alt" type="is-danger"></b-icon>
                 </button>
               </div>
             </div>

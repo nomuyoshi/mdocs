@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <notifications group="notifications" position="bottom right" />
-    <navbar/>
+    <navbar v-if="navbarVisible" />
     <div class="container">
       <div class="columns">
-        <div class="column is-3" v-show="sidebarVisible()">
+        <div class="column is-3" v-if="sidebarVisible">
           <sidebar/>
         </div>
         <div class="column">
@@ -24,15 +24,12 @@ const App = {
     Navbar,
     Sidebar,
   },
-  methods: {
+  computed: {
     sidebarVisible() {
-      const newUrlRegex = /\/docs\/new(\/)?$/;
-      const editUrlRegex = /\/docs\/\d+\/edit(\/)?$/;
-      // 新規作成と編集ページではサイドバー非表示
-      if (newUrlRegex.test(this.$route.path) || editUrlRegex.test(this.$route.path)) {
-        return false;
-      }
-      return true;
+      return ['doc-new', 'doc-edit', 'not-found'].indexOf(this.$route.name) < 0;
+    },
+    navbarVisible() {
+      return ['not-found'].indexOf(this.$route.name) < 0;
     },
   },
 };
