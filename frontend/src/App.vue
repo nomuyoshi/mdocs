@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
-import Sidebar from './components/Sidebar.vue';
+import Navbar from './components/common/Navbar.vue';
+import Sidebar from './components/common/Sidebar.vue';
 
 const App = {
   components: {
