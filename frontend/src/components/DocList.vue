@@ -1,7 +1,8 @@
 <template>
   <div>
     <h2 class="is-size-2 margin-bottom20">Myドキュメント</h2>
-    <ul v-if="docExists">
+    <p v-if="isSearchMode"><strong>「{{ this.titleQuery }}」検索結果</strong></p>
+    <ul>
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
         <section class="section">
           <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
@@ -11,15 +12,20 @@
         </section>
       </li>
     </ul>
-    <article class="message is-medium" v-else>
+    <article class="message" v-if="noData">
       <div class="message-body">
-        <p><strong>mDocはMarkDownで書けるクローズドな自分だけのドキュメント管理ツールです。</strong></p>
-        <ul class="margin20">
-          <li>・公開するほどではない細かなTips</li>
-          <li>・公開できないけど残しておきたいドキュメント</li>
-        </ul>
-        <p>などを書き溜めて、<strong>ナレッジ</strong>を蓄積していきましょう!!</p>
-        <p>早速、<a class="button is-primary" href="/docs/new">作成する</a></p>
+        <div v-if="isSearchMode">
+          <p>見つかりませんでした・・・</p>
+        </div>
+        <div v-else>
+          <p><strong>mDocはMarkDownで書けるクローズドな自分だけのドキュメント管理ツールです。</strong></p>
+          <ul class="margin20">
+            <li>・公開するほどではない細かなTips</li>
+            <li>・公開できないけど残しておきたいドキュメント</li>
+          </ul>
+          <p>などを書き溜めて、<strong>ナレッジ</strong>を蓄積していきましょう!!</p>
+          <p>早速、<a class="button is-primary" href="/docs/new">作成する</a></p>
+        </div>
       </div>
     </article>
   </div>
@@ -28,22 +34,38 @@
 <script>
 import DocTags from './common/DocTags.vue';
 
-export default {
+const DocList = {
+  props: {
+    fetch: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
+    titleQuery() {
+      return this.$route.query.title;
+    },
+    isSearchMode() {
+      return !!this.titleQuery;
+    },
     docList() {
       return this.$store.state.docs;
     },
-    docExists() {
-      return this.$store.state.docs.length > 0;
+    noData() {
+      return this.$store.state.docs.length === 0;
     },
   },
   created() {
-    this.$store.dispatch('fetchDocs');
+    if (this.fetch) {
+      this.$store.dispatch('fetchDocs', this.titleQuery);
+    }
   },
   components: {
     DocTags,
   },
 };
+
+export default DocList;
 </script>
 
 <style lang="scss" scoped>

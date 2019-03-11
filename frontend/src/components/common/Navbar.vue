@@ -12,7 +12,11 @@
       </a>
     </div>
     <div id="navbar-menu" class="navbar-menu">
-      <div class="navbar-start"></div>
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <search-input />
+        </div>
+      </div>
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
@@ -23,3 +27,14 @@
     </div>
   </nav>
 </template>
+<script>
+import SearchInput from './SearchInput.vue';
+
+const Navbar = {
+  components: {
+    SearchInput,
+  },
+};
+
+export default Navbar;
+</script>
