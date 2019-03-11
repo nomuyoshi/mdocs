@@ -3,8 +3,8 @@ const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-
 const path = require("path");
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : '/',
-  outputDir: path.resolve(__dirname, '../static/bundles/'),
+  publicPath: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : '/static/bundles/',
+  outputDir: path.resolve(__dirname, '../staticfiles/bundles/'),
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "scss",
