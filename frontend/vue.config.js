@@ -2,8 +2,11 @@ const BundleTracker = require('webpack-bundle-tracker');
 const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-dependencies
 const path = require("path");
 
+const publicPath = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : '/static/bundles/';
+const statsFilename = process.env.NODE_ENV === 'development' ? 'webpack-stats-dev.json' : 'webpack-stats.json';
+
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : '/static/bundles/',
+  publicPath,
   outputDir: path.resolve(__dirname, '../staticfiles/bundles/'),
   pluginOptions: {
     "style-resources-loader": {
@@ -13,7 +16,7 @@ module.exports = {
   },
   chainWebpack: (config) => {
     config.optimization.splitChunks(false);
-    config.plugin('BundleTracker').use(BundleTracker, [{ filename: './webpack-stats.json' }]);
+    config.plugin('BundleTracker').use(BundleTracker, [{ filename: './' + statsFilename }]);
     config.resolve.alias.set('__STATIC__', 'static');
     config.devServer
       .public('http://127.0.0.1:8080')

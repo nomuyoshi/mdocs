@@ -124,16 +124,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 #########################
 # WEBPACK_LOADER
 #########################
+WEBPACK_STATS_FILENAME = 'webpack-stats-dev.json' if DEBUG else 'webpack-stats.json'
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': DEBUG,
         'BUNDLE_DIR_NAME': '/bundles/',  # must end with slash
-        'STATS_FILE': os.path.join(FRONTEND_DIR, 'webpack-stats.json'),
+        'STATS_FILE': os.path.join(FRONTEND_DIR, WEBPACK_STATS_FILENAME),
     }
 }
 
@@ -160,10 +162,7 @@ REST_FRAMEWORK = {
 
 SECRET_KEY = env('SECRET_KEY')
 
-if not DEBUG:
-    import django_heroku
-    django_heroku.settings(locals())
-else:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -174,3 +173,6 @@ else:
             'PORT': env('DB_PORT'),
         }
     }
+else:
+    import django_heroku
+    django_heroku.settings(locals())
