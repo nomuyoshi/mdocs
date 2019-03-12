@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2 class="is-size-2 margin-bottom20">Myドキュメント</h2>
     <p v-if="isSearchMode"><strong>「{{ this.titleQuery }}」検索結果</strong></p>
     <ul>
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
@@ -32,7 +31,7 @@
 </template>
 
 <script>
-import DocTags from './common/DocTags.vue';
+import DocTags from './DocTags.vue';
 
 const DocList = {
   props: {
@@ -40,11 +39,11 @@ const DocList = {
       type: Boolean,
       default: true,
     },
+    titleQuery: {
+      type: String,
+    },
   },
   computed: {
-    titleQuery() {
-      return this.$route.query.title;
-    },
     isSearchMode() {
       return !!this.titleQuery;
     },

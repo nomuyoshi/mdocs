@@ -15,7 +15,7 @@
 
 <script>
 import axios from 'axios';
-import NotificationMixin from '../../mixins/NotificationMixin';
+import NotificationMixin from '@/mixins/NotificationMixin';
 
 const TagInput = {
   data() {

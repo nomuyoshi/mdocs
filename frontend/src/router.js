@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import DocList from './components/DocList.vue';
-import DocEditor from './components/DocEditor.vue';
-import DocDetail from './components/DocDetail.vue';
-import NotFound from './components/NotFound.vue';
+import DocListView from './views/DocListView.vue';
+import DocEditorView from './views/DocEditorView.vue';
+import DocDetailView from './views/DocDetailView.vue';
+import NotFoundView from './views/NotFoundView.vue';
 
 Vue.use(Router);
 
@@ -14,34 +14,34 @@ export default new Router({
     {
       path: '/',
       name: 'root',
-      component: DocList,
+      component: DocListView,
       props: true,
     },
     {
       path: '/docs',
       name: 'doc-list',
-      component: DocList,
+      component: DocListView,
       props: true,
     },
     {
       path: '/docs/new',
       name: 'doc-new',
-      component: DocEditor,
+      component: DocEditorView,
     },
     {
       path: '/docs/:id(\\d+)',
       name: 'doc-detail',
-      component: DocDetail,
+      component: DocDetailView,
     },
     {
       path: '/docs/:id(\\d+)/edit',
       name: 'doc-edit',
-      component: DocEditor,
+      component: DocEditorView,
     },
     {
       path: '*',
       name: 'not-found',
-      component: NotFound,
+      component: NotFoundView,
     },
   ],
 });
