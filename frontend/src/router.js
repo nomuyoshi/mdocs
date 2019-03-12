@@ -15,11 +15,13 @@ export default new Router({
       path: '/',
       name: 'root',
       component: DocList,
+      props: true,
     },
     {
       path: '/docs',
       name: 'doc-list',
       component: DocList,
+      props: true,
     },
     {
       path: '/docs/new',

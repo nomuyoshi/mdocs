@@ -9,7 +9,11 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         current_user = self.request.user
-        return current_user.document_set.order_by('-created_at').all()
+        query_set = current_user.document_set.order_by('-created_at').all()
+        title = self.request.query_params.get('title', None)
+        if title:
+            query_set = query_set.filter(title__icontains=title)
+        return query_set
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

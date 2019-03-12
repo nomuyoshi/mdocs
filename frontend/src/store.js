@@ -21,8 +21,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchDocs({ commit }) {
-      axios.get('/docs/')
+    fetchDocs({ commit }, title = null) {
+      const params = title ? { title } : {};
+      axios.get('/docs/', {
+        params,
+      })
         .then((response) => {
           commit('setDocs', response.data);
         })
