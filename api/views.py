@@ -11,7 +11,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         current_user = self.request.user
-        query_set = current_user.document_set.order_by('-created_at').all()
+        query_set = current_user.document_set.prefetch_related('tags').order_by('-created_at').all()
         title = self.request.query_params.get('title', None)
         if title:
             query_set = query_set.filter(title__icontains=title)
