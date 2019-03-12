@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.db.models import Count
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework import generics
@@ -36,4 +37,6 @@ class TagListView(generics.ListAPIView):
 
     def get_queryset(self):
         current_user = self.request.user
-        return current_user.tag_set.order_by('id').all()
+        query_set = current_user.tag_set.annotate(documents_count=Count('document')).order_by('id').all()
+
+        return query_set
