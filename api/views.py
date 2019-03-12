@@ -1,6 +1,8 @@
 from django.db import transaction
 from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
+from rest_framework import generics
+
 from .models import Document
 from .serializers import DocumentSerializer, TagSerializer
 
@@ -29,9 +31,9 @@ class DocumentViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         return super().update(request, *args, **kwargs)
 
-class TagViewSet(viewsets.ModelViewSet):
+class TagListView(generics.ListAPIView):
     serializer_class = TagSerializer
 
     def get_queryset(self):
         current_user = self.request.user
-        return current_user.tag_set.all()
+        return current_user.tag_set.order_by('id').all()
