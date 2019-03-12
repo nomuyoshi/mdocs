@@ -1,31 +1,29 @@
 <template>
   <div class="columns">
-    <div class="column is-three-quarters">
+    <div class="column">
       <section class="section">
-        <div class="container">
-          <div class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <p class="title">{{ doc.title }}</p>
-              </div>
-              <div class="level-item">
-                <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
-                  <b-icon icon="edit" type="is-info"></b-icon>
-                </router-link>
-              </div>
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <p class="title">{{ doc.title }}</p>
             </div>
-            <div class="level-right">
-              <div class="level-item">
-                <button class="button" type="button" @click="onClickDelete">
-                  <b-icon icon="trash-alt" type="is-danger"></b-icon>
-                </button>
-              </div>
+            <div class="level-item">
+              <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
+                <b-icon icon="edit" type="is-info"></b-icon>
+              </router-link>
             </div>
           </div>
-          <doc-tags :doc="doc" />
-          <hr/>
-          <preview :compiled-html="compiledHtml"/>
+          <div class="level-right">
+            <div class="level-item">
+              <button class="button" type="button" @click="onClickDelete">
+                <b-icon icon="trash-alt" type="is-danger"></b-icon>
+              </button>
+            </div>
+          </div>
         </div>
+        <doc-tags :doc="doc" />
+        <hr/>
+        <preview :compiled-html="compiledHtml"/>
       </section>
     </div>
   </div>
