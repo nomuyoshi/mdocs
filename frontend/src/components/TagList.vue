@@ -4,9 +4,14 @@
       <b-icon icon="tags" size="is-small"></b-icon>
       タグ一覧
     </p>
-    <a class="panel-block" v-for="tag in tags" :key="tag.id">
+    <router-link
+      class="panel-block"
+      v-for="tag in tags"
+      :key="tag.id"
+      :to="{ name: 'doc-list', query: { tag: tag.name }}"
+    >
       {{ tag.name }} ({{ tag.documents_count }})
-    </a>
+    </router-link>
   </nav>
 </template>
 

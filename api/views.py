@@ -4,7 +4,7 @@ from rest_framework import viewsets, filters, status
 from rest_framework.response import Response
 from rest_framework import generics
 
-from .models import Document
+from .models import Document, Tag
 from .serializers import DocumentSerializer, TagSerializer
 
 class DocumentViewSet(viewsets.ModelViewSet):
@@ -12,11 +12,20 @@ class DocumentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         current_user = self.request.user
-        query_set = current_user.document_set.prefetch_related('tags').order_by('-created_at').all()
-        title = self.request.query_params.get('title', None)
-        if title:
-            query_set = query_set.filter(title__icontains=title)
-        return query_set
+        params = self.request.query_params
+        query_set = current_user.document_set
+
+        if params.get('tag', None):
+            try:
+                tag = current_user.tag_set.get(name=params.get('tag'))
+            except Tag.DoesNotExist:
+                return Document.objects.none()
+            query_set = tag.document_set
+
+        if params.get('title', None):
+            query_set = query_set.filter(title__icontains=params.get('title'))
+
+        return query_set.prefetch_related('tags').order_by('-created_at')
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

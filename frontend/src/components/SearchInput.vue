@@ -16,9 +16,7 @@ const SearchInput = {
       const title = event.target.value.trim();
       if (!title) { return; }
 
-      this.$store.dispatch('fetchDocs', title).then(() => {
-        this.$router.push({ name: 'doc-list', query: { title }, params: { fetch: false } });
-      });
+      this.$router.push({ name: 'doc-list', query: { title } });
     },
   },
 };

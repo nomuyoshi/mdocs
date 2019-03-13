@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="isSearchMode"><strong>「{{ this.titleQuery }}」検索結果</strong></p>
+    <p v-if="isSearchMode"><strong>「{{ this.query.title }}」検索結果</strong></p>
     <ul>
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
         <section class="section">
@@ -35,17 +35,13 @@ import DocTags from './DocTags.vue';
 
 const DocList = {
   props: {
-    fetch: {
-      type: Boolean,
-      default: true,
-    },
-    titleQuery: {
-      type: String,
+    query: {
+      type: Object,
     },
   },
   computed: {
     isSearchMode() {
-      return !!this.titleQuery;
+      return this.query.title;
     },
     docList() {
       return this.$store.state.docs;
@@ -54,10 +50,13 @@ const DocList = {
       return this.$store.state.docs.length === 0;
     },
   },
-  created() {
-    if (this.fetch) {
-      this.$store.dispatch('fetchDocs', this.titleQuery);
-    }
+  mounted() {
+    this.$store.dispatch('fetchDocs', this.query);
+  },
+  watch: {
+    query(newQuery) {
+      this.$store.dispatch('fetchDocs', newQuery);
+    },
   },
   components: {
     DocTags,
