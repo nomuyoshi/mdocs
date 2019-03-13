@@ -38,12 +38,11 @@
 import axios from 'axios';
 import marked from 'marked';
 import { debounce } from 'lodash';
-import router from '../router';
-import Preview from './common/Preview.vue';
-import TagInput from './common/TagInput.vue';
-import NotificationMixin from '../mixins/NotificationMixin';
+import Preview from '@/components/Preview.vue';
+import TagInput from '@/components/TagInput.vue';
+import NotificationMixin from '@/mixins/NotificationMixin';
 
-export default {
+const DocEditorView = {
   data() {
     return {
       doc: {
@@ -75,7 +74,7 @@ export default {
       })
       .catch(() => {
         this.notifyError('データが存在しません');
-        router.push('/');
+        this.$router.push('/');
       });
   },
   methods: {
@@ -90,7 +89,7 @@ export default {
         data: this.buildSubmitData(),
       })
         .then(() => {
-          router.push('/');
+          this.$router.push('/');
         })
         .catch((error) => {
           this.errors = error.response.data;
@@ -120,6 +119,8 @@ export default {
   },
   mixins: [NotificationMixin],
 };
+
+export default DocEditorView;
 </script>
 
 <style lang="scss">
