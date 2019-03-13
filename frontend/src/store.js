@@ -21,8 +21,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchDocs({ commit }, title = null) {
-      const params = title ? { title } : {};
+    fetchDocs({ commit }, params = {}) {
       axios.get('/docs/', {
         params,
       })

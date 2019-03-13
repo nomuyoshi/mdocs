@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="is-size-2 margin-bottom20">Myドキュメント</h2>
-    <doc-list :fetch="fetch" :title-query="titleQuery" />
+    <doc-list :query="query" />
   </div>
 </template>
 
@@ -9,15 +9,12 @@
 import DocList from '@/components/DocList.vue';
 
 const DocListView = {
-  props: {
-    fetch: {
-      type: Boolean,
-      default: true,
-    },
-  },
   computed: {
-    titleQuery() {
-      return this.$route.query.title;
+    query() {
+      return {
+        title: this.$route.query.title,
+        tag: this.$route.query.tag,
+      };
     },
   },
   components: {
