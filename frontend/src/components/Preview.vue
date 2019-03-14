@@ -71,5 +71,23 @@ export default Preview;
     padding: 1.25em 1.5em;
     margin: 1.5em 0;
   }
+  /deep/ table {
+    margin: 1.5rem 0;
+    background-color: $white;
+    color: $grey-darker;
+    tr {
+      td, th {
+        border: 1px solid $grey-lighter;
+        border-width: 1px;
+        padding: .5em .75em;
+        vertical-align: top;
+      }
+    }
+    tbody {
+      tr:nth-child(even) {
+        background-color: $white-ter;
+      }
+    }
+  }
 }
 </style>
