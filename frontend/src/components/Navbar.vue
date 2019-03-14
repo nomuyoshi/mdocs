@@ -18,9 +18,14 @@
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/logout/" class="button is-light">ログアウト</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <span class="navbar-link">
+            メニュー
+          </span>
+          <div class="navbar-dropdown is-boxed">
+            <a href="/logout/" class="navbar-item">ログアウト</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" @click="onClickDeleteUser">退会</a>
           </div>
         </div>
       </div>
@@ -28,11 +33,27 @@
   </nav>
 </template>
 <script>
+import axios from 'axios';
 import SearchInput from './SearchInput.vue';
 
 const Navbar = {
   components: {
     SearchInput,
+  },
+  methods: {
+    onClickDeleteUser(e) {
+      e.preventDefault();
+      // eslint-disable-next-line no-alert
+      if (window.confirm('全データが削除され、二度と元に戻せません。よろしいですか？')) {
+        axios.delete('/user/delete/')
+          .then(() => {
+            window.location.href = '/login';
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
   },
 };
 
