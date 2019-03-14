@@ -1,7 +1,6 @@
 from django.db import transaction
 from django.db.models import Count
-from rest_framework import viewsets, filters, status
-from rest_framework.response import Response
+from rest_framework import viewsets
 from rest_framework import generics
 
 from .models import Document, Tag
