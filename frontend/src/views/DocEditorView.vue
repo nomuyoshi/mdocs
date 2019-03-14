@@ -25,7 +25,7 @@
         </b-field>
       </div>
       <div class="column is-half">
-        <preview :compiled-html="compiledHtml"/>
+        <preview :compiled-html="compiledHtml" :isInputting="true"/>
       </div>
     </div>
     <button class="button is-primary is-pulled-right" type="button" @click="onSubmit">
@@ -141,6 +141,7 @@ hr {
 
 .body-area {
   margin-bottom: 0;
+
   .column {
     padding-bottom: 0;
   }

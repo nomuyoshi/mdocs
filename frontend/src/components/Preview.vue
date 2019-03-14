@@ -1,5 +1,5 @@
 <template>
-  <div id="preview">
+  <div id="preview" :class="previewCss">
     <div v-html="compiledHtml"></div>
     <p class="has-text-grey-light" style="margin-top: 1em;" v-show="noData">
       プレビューエリア
@@ -10,11 +10,21 @@
 <script>
 const Preview = {
   props: {
-    compiledHtml: String,
+    compiledHtml: {
+      type: String,
+      default: '',
+    },
+    isInputting: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     noData() {
       return this.compiledHtml.length === 0;
+    },
+    previewCss() {
+      return this.isInputting ? 'preview-scroll' : '';
     },
   },
 };
@@ -24,6 +34,11 @@ export default Preview;
 
 <style lang="scss" scoped>
 @import '~bulma/sass/utilities/_all.sass';
+.preview-scroll {
+  height: calc(100vh - 250px);
+  overflow-y: auto;
+}
+
 #preview {
   /deep/h1, /deep/h2, /deep/h3, /deep/h4, /deep/h5, /deep/h6 {
     font-weight: $weight-bold;
