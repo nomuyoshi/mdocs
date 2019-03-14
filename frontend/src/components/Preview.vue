@@ -89,5 +89,11 @@ export default Preview;
       }
     }
   }
+  /deep/ p+p {
+    margin-top: 1.5rem;
+  }
+  /deep/ pre {
+    margin: 1.5rem 0;
+  }
 }
 </style>
