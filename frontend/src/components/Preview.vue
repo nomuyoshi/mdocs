@@ -60,5 +60,16 @@ export default Preview;
   /deep/ ol {
     margin-left: 2.5rem;
   }
+  /deep/ blockquote {
+    background-color: whitesmoke;
+    font-size: 1rem;
+    border-color: $border;
+    border-radius: $radius;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    color: $grey;
+    padding: 1.25em 1.5em;
+    margin: 1.5em 0;
+  }
 }
 </style>
