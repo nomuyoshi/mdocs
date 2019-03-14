@@ -49,7 +49,16 @@ export default Preview;
   /deep/ h6 { font-size: 1.0rem; }
   /deep/ ul {
     list-style: disc inside none;
-    margin-left: 20px;
+    margin-left: 1.5rem;
+    ul {
+      list-style-type: circle;
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+  /deep/ ol {
+    margin-left: 2.5rem;
   }
 }
 </style>
