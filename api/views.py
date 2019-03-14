@@ -1,5 +1,6 @@
 from django.db import transaction
 from django.db.models import Count
+from django.contrib.auth import logout
 from rest_framework import viewsets
 from rest_framework import generics
 
@@ -48,3 +49,12 @@ class TagListView(generics.ListAPIView):
         query_set = current_user.tag_set.annotate(documents_count=Count('document')).order_by('id').all()
 
         return query_set
+
+class UserDeleteView(generics.DestroyAPIView):
+
+    def get_object(self):
+        return self.request.user
+
+    def peform_destroy(self, instance):
+        logout(self.request)
+        instance.delete()
