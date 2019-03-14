@@ -23,14 +23,30 @@ export default Preview;
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/utilities/initial-variables.sass';
+@import '~bulma/sass/utilities/_all.sass';
 #preview {
-  /deep/ h1 { font-size: $size-2; }
-  /deep/ h2 { font-size: $size-3; }
-  /deep/ h3 { font-size: $size-4; }
-  /deep/ h4 { font-size: $size-5; }
-  /deep/ h5 { font-size: $size-6; }
-  /deep/ h6 { font-size: $size-6; }
+  /deep/h1, /deep/h2, /deep/h3, /deep/h4, /deep/h5, /deep/h6 {
+    font-weight: $weight-bold;
+    margin-top: 1.6rem;
+    margin-bottom: 1.4rem;
+  }
+  /deep/ h1 {
+    font-size: 2rem;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid $border;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+  /deep/ h2 {
+    font-size: 1.8rem;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid $border;
+    margin-bottom: 2rem;
+  }
+  /deep/ h3 { font-size: 1.6rem; }
+  /deep/ h4 { font-size: 1.4rem; }
+  /deep/ h5 { font-size: 1.2rem; }
+  /deep/ h6 { font-size: 1.0rem; }
   /deep/ ul {
     list-style: disc inside none;
     margin-left: 20px;
