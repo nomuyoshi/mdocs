@@ -21,12 +21,12 @@
             placeholder="本文"
             maxlength="10000"
             required
-            v-scroll="scrollLog"
+            v-scroll="onScroll"
           ></textarea>
         </b-field>
       </div>
       <div class="column is-half">
-        <preview :compiled-html="compiledHtml" :isInputting="true"/>
+        <preview :compiled-html="compiledHtml" :inputting="true" :scrollPercents="scrollPercents"/>
       </div>
     </div>
     <button class="button is-primary is-pulled-right" type="button" @click="onSubmit">
@@ -53,6 +53,7 @@ const DocEditorView = {
         body: '',
         tags: [],
       },
+      scrollPercents: 0,
       errors: {},
     };
   },
@@ -114,8 +115,10 @@ const DocEditorView = {
         tags,
       };
     },
-    scrollLog() {
-      console.log('scroll textarea');
+    onScroll(event, el) {
+      const scrollPer =  el.scrollTop / (el.scrollHeight - el.clientHeight);
+      console.log(scrollPer);
+      this.scrollPercents = scrollPer;
     },
   },
   components: {

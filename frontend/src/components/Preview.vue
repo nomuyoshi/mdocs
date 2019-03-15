@@ -16,9 +16,12 @@ const Preview = {
       type: String,
       default: '',
     },
-    isInputting: {
+    inputting: {
       type: Boolean,
       default: false,
+    },
+    scrollPercents: {
+      type: Number,
     },
   },
   computed: {
@@ -26,7 +29,14 @@ const Preview = {
       return this.compiledHtml.length === 0;
     },
     previewCss() {
-      return this.isInputting ? 'preview-scroll' : '';
+      return this.inputting ? 'preview-scroll' : '';
+    },
+  },
+  watch: {
+    scrollPercents(newValue) {
+      const el = this.$el;
+      const distance = (el.scrollHeight - el.clientHeight) * newValue;
+      el.scrollTo(0, distance);
     },
   },
   methods: {
