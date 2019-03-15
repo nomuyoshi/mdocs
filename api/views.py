@@ -1,9 +1,12 @@
 from django.db import transaction
 from django.db.models import Count
 from django.contrib.auth import logout
-from rest_framework import viewsets
-from rest_framework import generics
 
+from rest_framework import viewsets, generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from .slack_client import SlackClient
 from .models import Document, Tag
 from .serializers import DocumentSerializer, TagSerializer
 
@@ -58,3 +61,13 @@ class UserDeleteView(generics.DestroyAPIView):
     def peform_destroy(self, instance):
         logout(self.request)
         instance.delete()
+
+class ContactView(APIView):
+    def post(self, request, *args, **kwargs):
+        text = request.data['text']
+        user = self.request.user
+        message =  user.username + '(' + user.email + ')' + 'より問い合わせ\n\n' + text
+        if SlackClient().post(message):
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)

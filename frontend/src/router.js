@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import DocListView from './views/DocListView.vue';
 import DocEditorView from './views/DocEditorView.vue';
 import DocDetailView from './views/DocDetailView.vue';
+import ContactFormView from './views/ContactFormView.vue';
 import NotFoundView from './views/NotFoundView.vue';
 
 Vue.use(Router);
@@ -37,6 +38,11 @@ export default new Router({
       path: '/docs/:id(\\d+)/edit',
       name: 'doc-edit',
       component: DocEditorView,
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: ContactFormView,
     },
     {
       path: '*',

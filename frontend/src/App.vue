@@ -26,7 +26,7 @@ const App = {
   },
   computed: {
     sidebarVisible() {
-      return ['doc-new', 'doc-edit', 'not-found'].indexOf(this.$route.name) < 0;
+      return ['doc-new', 'doc-edit', 'not-found', 'contact'].indexOf(this.$route.name) < 0;
     },
     navbarVisible() {
       return ['not-found'].indexOf(this.$route.name) < 0;

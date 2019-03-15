@@ -18,6 +18,12 @@
         </div>
       </div>
       <div class="navbar-end">
+        <div class="navbar-item">
+          <router-link class="has-text-white" to="/contact">
+            <b-icon icon="envelope" size="is-small"></b-icon>
+            <span>お問い合わせ</span>
+          </router-link>
+        </div>
         <div class="navbar-item has-dropdown is-hoverable">
           <span class="navbar-link">
             メニュー
