@@ -188,6 +188,14 @@ LOGGING = {
     }
 }
 
+#########################
+# Slack
+#########################
+SLACK_CONFIG = {
+    'webhook_url': env('SLACK_WEBHOOK_URL'),
+    'default_channel': 'mdoc-support',
+}
+
 if DEBUG:
     DATABASES = {
         'default': {
