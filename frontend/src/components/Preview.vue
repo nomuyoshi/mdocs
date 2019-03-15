@@ -1,5 +1,5 @@
 <template>
-  <div id="preview" :class="previewCss">
+  <div id="preview" :class="previewCss" v-scroll="scrollLog">
     <div v-html="compiledHtml"></div>
     <p class="has-text-grey-light" style="margin-top: 1em;" v-show="noData">
       プレビューエリア
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { scroll } from '@/directives';
+
 const Preview = {
   props: {
     compiledHtml: {
@@ -27,6 +29,12 @@ const Preview = {
       return this.isInputting ? 'preview-scroll' : '';
     },
   },
+  methods: {
+    scrollLog() {
+      console.log('scorll preview');
+    },
+  },
+  directives: { scroll },
 };
 
 export default Preview;

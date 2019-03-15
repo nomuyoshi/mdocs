@@ -14,14 +14,15 @@
     <div class="columns body-area">
       <div class="column is-half">
         <b-field>
-          <b-input type="textarea"
-            customClass="editor"
+          <textarea
+            class="textarea editor has-fixed-size"
             @input="updateBody"
             :value="doc.body"
             placeholder="本文"
             maxlength="10000"
             required
-          />
+            v-scroll="scrollLog"
+          ></textarea>
         </b-field>
       </div>
       <div class="column is-half">
@@ -38,6 +39,7 @@
 import axios from 'axios';
 import marked from 'marked';
 import { debounce } from 'lodash';
+import { scroll } from '@/directives';
 import Preview from '@/components/Preview.vue';
 import TagInput from '@/components/TagInput.vue';
 import NotificationMixin from '@/mixins/NotificationMixin';
@@ -79,8 +81,8 @@ const DocEditorView = {
   },
   methods: {
     // eslint-disable-next-line func-names
-    updateBody: debounce(function (value) {
-      this.doc.body = value;
+    updateBody: debounce(function (event) {
+      this.doc.body = event.target.value;
     }, 300),
     onSubmit() {
       axios({
@@ -112,11 +114,15 @@ const DocEditorView = {
         tags,
       };
     },
+    scrollLog() {
+      console.log('scroll textarea');
+    },
   },
   components: {
     Preview,
     TagInput,
   },
+  directives: { scroll },
   mixins: [NotificationMixin],
 };
 
