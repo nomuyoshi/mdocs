@@ -9,5 +9,6 @@ class SlackClient:
 
     def post(self, text):
         payload = json.dumps({ "text": text, "channel": self.channel })
-        return requests.post(self.url, payload)
+        response = requests.post(self.url, payload)
+        return response.text == "ok"
 
