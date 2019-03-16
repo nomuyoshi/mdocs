@@ -21,13 +21,12 @@
     </div>
     <doc-tags :doc="doc" />
     <hr/>
-    <preview :compiled-html="compiledHtml"/>
+    <preview :markdown="doc.body"/>
   </section>
 </template>
 
 <script>
 import axios from 'axios';
-import marked from 'marked';
 
 import DocTags from './DocTags.vue';
 import Preview from './Preview.vue';
@@ -45,12 +44,6 @@ export default {
         updated_at: '',
       },
     };
-  },
-  computed: {
-    compiledHtml() {
-      if (!this.doc.body) { return ''; }
-      return marked(this.doc.body, { sanitize: true, breaks: true });
-    },
   },
   mounted() {
     axios.get(`/docs/${this.$route.params.id}/`)

@@ -15,9 +15,9 @@
       <div class="column is-half">
         <b-field>
           <textarea
-            class="textarea editor has-fixed-size"
-            @input="updateBody"
-            :value="doc.body"
+            id="editor"
+            class="textarea has-fixed-size"
+            v-model="doc.body"
             placeholder="本文"
             maxlength="10000"
             required
@@ -26,7 +26,7 @@
         </b-field>
       </div>
       <div class="column is-half">
-        <preview :compiled-html="compiledHtml" :inputting="true" :scrollPercents="scrollPercents"/>
+        <preview :markdown="doc.body" :inputting="true" :scrollPercents="scrollPercents"/>
       </div>
     </div>
     <button class="button is-primary is-pulled-right" type="button" @click="onSubmit">
@@ -37,8 +37,6 @@
 
 <script>
 import axios from 'axios';
-import marked from 'marked';
-import { debounce } from 'lodash';
 import { scroll } from '@/directives';
 import Preview from '@/components/Preview.vue';
 import TagInput from '@/components/TagInput.vue';
@@ -58,9 +56,6 @@ const DocEditorView = {
     };
   },
   computed: {
-    compiledHtml() {
-      return marked(this.doc.body, { sanitize: true, breaks: true });
-    },
     apiUrl() {
       return this.doc.id ? `/docs/${this.doc.id}/` : '/docs/';
     },
@@ -81,10 +76,6 @@ const DocEditorView = {
       });
   },
   methods: {
-    // eslint-disable-next-line func-names
-    updateBody: debounce(function (event) {
-      this.doc.body = event.target.value;
-    }, 300),
     onSubmit() {
       axios({
         method: this.httpMethod,
@@ -116,9 +107,8 @@ const DocEditorView = {
       };
     },
     onScroll(event, el) {
-      const scrollPer =  el.scrollTop / (el.scrollHeight - el.clientHeight);
-      console.log(scrollPer);
-      this.scrollPercents = scrollPer;
+      console.log('scroll');
+      this.scrollPercents = el.scrollTop / (el.scrollHeight - el.clientHeight);
     },
   },
   components: {
@@ -133,7 +123,7 @@ export default DocEditorView;
 </script>
 
 <style lang="scss">
-.editor {
+#editor {
   height: calc(100vh - 250px);
   max-height: calc(100vh - 250px);
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="preview" :class="previewCss" v-scroll="scrollLog">
+  <div id="preview" :class="previewCss">
     <div v-html="compiledHtml"></div>
     <p class="has-text-grey-light" style="margin-top: 1em;" v-show="noData">
       プレビューエリア
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { scroll } from '@/directives';
+import marked from 'marked';
 
 const Preview = {
   props: {
-    compiledHtml: {
+    markdown: {
       type: String,
       default: '',
     },
@@ -25,8 +25,11 @@ const Preview = {
     },
   },
   computed: {
+    compiledHtml() {
+      return marked(this.markdown, { sanitize: true, breaks: true });
+    },
     noData() {
-      return this.compiledHtml.length === 0;
+      return this.markdown.length === 0;
     },
     previewCss() {
       return this.inputting ? 'preview-scroll' : '';
@@ -39,12 +42,6 @@ const Preview = {
       el.scrollTo(0, distance);
     },
   },
-  methods: {
-    scrollLog() {
-      console.log('scorll preview');
-    },
-  },
-  directives: { scroll },
 };
 
 export default Preview;
