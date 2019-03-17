@@ -1,15 +1,17 @@
 <template>
-  <div class="columns">
-    <div class="column is-three-fifths is-offset-one-fifth">
-      <h2 class="title is-3">お問い合わせ</h2>
-      <div class="notification">
-        ログインに使用しているソーシャルアカウントに登録されている<br>
-        メールアドレスに返信させていただく場合がございます。
+  <div class="section">
+    <div class="columns">
+      <div class="column is-three-fifths is-offset-one-fifth">
+        <h2 class="title is-3">お問い合わせ</h2>
+        <div class="notification">
+          ログインに使用しているソーシャルアカウントに登録されている<br>
+          メールアドレスに返信させていただく場合がございます。
+        </div>
+        <b-field>
+          <b-input maxlength="200" type="textarea" v-model="text"></b-input>
+        </b-field>
+        <button class="button is-fullwidth" :disabled="disabled" @click="onSubmit">送信</button>
       </div>
-      <b-field>
-        <b-input maxlength="200" type="textarea" v-model="text"></b-input>
-      </b-field>
-      <button class="button is-fullwidth" :disabled="disabled" @click="onSubmit">送信</button>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2 class="is-size-2 margin-bottom20">Myドキュメント</h2>
+  <div class="section">
+    <h2 class="is-size-5 margin-bottom20">Myドキュメント</h2>
     <doc-list :query="query" />
   </div>
 </template>

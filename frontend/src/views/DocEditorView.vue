@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="section">
     <b-field>
       <b-input
         v-model="doc.title"
@@ -130,14 +130,9 @@ export default DocEditorView;
 </style>
 
 <style lang="scss" scoped>
-.field {
-  margin-bottom: 0;
-}
-
-hr {
-  margin: 5px 0;
-}
-
+hr { margin: 5px 0; }
+.field { margin-bottom: 0; }
+.section { padding-top: 1.5rem; }
 .body-area {
   margin-bottom: 0;
 
@@ -145,5 +140,4 @@ hr {
     padding-bottom: 0;
   }
 }
-
 </style>

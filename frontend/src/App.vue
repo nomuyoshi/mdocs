@@ -2,14 +2,12 @@
   <div id="app">
     <notifications group="notifications" position="bottom right" />
     <navbar v-if="navbarVisible" />
-    <div class="container">
-      <div class="columns">
-        <div class="column is-3" v-if="sidebarVisible">
-          <sidebar/>
-        </div>
-        <div class="column">
-          <router-view/>
-        </div>
+    <div class="columns">
+      <div class="column is-3" v-if="sidebarVisible">
+        <sidebar/>
+      </div>
+      <div class="column">
+        <router-view/>
       </div>
     </div>
   </div>
