@@ -1,16 +1,24 @@
 <template>
-  <div id="sidebar">
-    <router-link to="/docs/new" class="button is-link is-medium">
-      <b-icon icon="edit"></b-icon><span>新規作成</span>
-    </router-link>
+  <nav id="sidebar" class="has-background-grey-dark" :style="{ width: sideWidth + 'px'}">
+    <div class="new-doc-button has-text-centered">
+      <router-link to="/docs/new" class="button is-primary is-rounded">
+        <b-icon icon="plus"></b-icon><span>ドキュメント作成</span>
+      </router-link>
+    </div>
     <tag-list/>
-  </div>
+  </nav>
 </template>
 
 <script>
 import TagList from './TagList.vue';
 
 const Sidebar = {
+  props: {
+    sideWidth: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     TagList,
   },
@@ -18,3 +26,15 @@ const Sidebar = {
 
 export default Sidebar;
 </script>
+
+<style lang="scss" scoped>
+#sidebar {
+  height: 100%;
+  padding: 2rem 1rem;
+  margin: 0;
+
+  .new-doc-button {
+    margin-bottom: 2rem;
+  }
+}
+</style>

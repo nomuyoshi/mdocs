@@ -4,6 +4,7 @@
       type="search"
       icon="search"
       @keyup.native.enter="search"
+      rounded
      >
     </b-input>
   </b-field>

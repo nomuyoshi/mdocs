@@ -1,18 +1,19 @@
 <template>
-  <nav class="panel">
-    <p class="panel-heading is-size-6">
+  <div class="tag-list">
+    <p class="is-size-7 has-text-weight-bold">
       <b-icon icon="tags" size="is-small"></b-icon>
-      タグ一覧
+      タグ
     </p>
-    <router-link
-      class="panel-block"
-      v-for="tag in tags"
-      :key="tag.id"
-      :to="{ name: 'doc-list', query: { tag: tag.name }}"
-    >
-      {{ tag.name }} ({{ tag.documents_count }})
-    </router-link>
-  </nav>
+    <ul>
+      <li v-for="tag in tags" :key="tag.id" class="tag-item">
+        <router-link
+          :to="{ name: 'doc-list', query: { tag: tag.name }}"
+        >
+          {{ tag.name }} ({{ tag.documents_count }})
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -37,3 +38,14 @@ const TagList = {
 
 export default TagList;
 </script>
+
+<style lang="scss" scoped>
+.tag-list {
+  color: white !important;
+  .tag-item {
+    padding: .5rem;
+    border-bottom: solid 1px #363636;
+    a { color: white; }
+  }
+}
+</style>

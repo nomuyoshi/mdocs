@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <notifications group="notifications" position="bottom right" />
-    <navbar v-if="navbarVisible" />
+    <navbar v-if="navbarVisible" brand-width="230" />
     <div class="columns">
-      <div class="column is-3" v-if="sidebarVisible">
-        <sidebar/>
+      <div class="column is-narrow sidebar-column" v-if="sidebarVisible">
+        <sidebar side-width="230" />
       </div>
       <div class="column">
         <router-view/>
@@ -44,8 +44,9 @@ export default App;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.container {
-  margin-top: 30px;
+  .sidebar-column {
+    padding-bottom: 0;
+    height: calc(100vh - 3.25rem + 0.75rem);
+  }
 }
 </style>

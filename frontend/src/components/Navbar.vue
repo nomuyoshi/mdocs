@@ -1,14 +1,9 @@
 <template>
   <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+    <div class="navbar-brand" :style="{ width: brandWidth + 'px'}">
+      <a class="navbar-item" href="/" style="width: 100%;">
         <h1 class="has-text-white is-size-3">mDoc</h1>
         <!--            <img src="{% static 'images/logo.png' %}" alt="mDocロゴ" /> -->
-      </a>
-      <a role="button" class="navbar-burger burger" data-target="navbar-menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
       </a>
     </div>
     <div id="navbar-menu" class="navbar-menu">
@@ -43,6 +38,12 @@ import axios from 'axios';
 import SearchInput from './SearchInput.vue';
 
 const Navbar = {
+  props: {
+    brandWidth: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     SearchInput,
   },
