@@ -1,19 +1,37 @@
 {% extends 'registration_base.html' %}
 {% block content %}
-<div class="columns">
-  <div class="column is-half is-offset-one-quarter has-text-centered">
-    <h1 class="is-size-2">mDocにログイン</h1>
-    <hr>
-    {% if user.is_authenticated %}
-      すでにログインしています。
-    {% else %}
-      <a href="{% url "social:begin" "google-oauth2" %}" class="button is-medium has-text-white google">
-        <span class="icon">
-          <i class="fab fa-google"></i>
-        </span>
-        <span>Googleアカウントでログイン</span>
-      </a>
-    {% endif %}
-    {% endblock %}
+<section class="hero is-medium is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <div class="is-pulled-left">
+        <div>
+          <h1 class="title is-1">mDoc</h1>
+          <h2 class="title is-2">Stock Knowledge!!<h2>
+        </div>
+        <p class="subtitle">
+        mDocはMarkDownで書けるクローズドなドキュメント管理ツールです。<br>
+        公開されないので、気軽に日々の学び・気付きを溜めることができます。<br>
+        公開するほどではないけれど、自分にとっては価値のある情報・知識などを<br>
+        どんどんためていきましょう！！
+        </p>
+      </div>
+      <div class="is-pulled-right">
+        {% if user.is_authenticated %}
+          すでにログインしています。
+        {% else %}
+          <p class="is-size-5">「無料」で始める / ログインする</p>
+          <p class="is-size-7">　※3秒で登録完了します</p>
+          <div style="margin: 2rem;">
+            <a href="{% url "social:begin" "google-oauth2" %}" class="button is-medium">
+              <span class="icon google">
+                <i class="fab fa-google"></i>
+              </span>
+              <span>Googleアカウント</span>
+            </a>
+          </div>
+        {% endif %}
+        {% endblock %}
+      </div>
+    </div>
   </div>
-</div>
+</section>
