@@ -12,6 +12,9 @@
         </div>
       </div>
       <div class="navbar-end">
+        <a href="https://twitter.com/mDocSupportTeam" target="_blank" class="navbar-item">
+          お知らせ
+        </a>
         <router-link class="navbar-item" to="/contact">
           <b-icon icon="envelope" size="is-small"></b-icon>
           <span>お問い合わせ</span>
