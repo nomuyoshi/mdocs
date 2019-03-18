@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand has-background-grey-darker" :style="{ width: brandWidth + 'px'}">
+  <nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand" :style="{ width: brandWidth + 'px'}">
       <a class="navbar-item" href="/" style="width: 100%;">
         <h1 class="has-text-white has-text-weight-bold is-size-3">mDoc</h1>
       </a>
@@ -65,7 +65,7 @@ export default Navbar;
 </script>
 
 <style lang="scss" scoped>
-#navbar-menu {
-  border-bottom: 1px solid #DBDBDB;
+.navbar {
+  border-bottom: 1px solid #7A7A7A;
 }
 </style>

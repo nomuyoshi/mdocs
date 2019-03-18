@@ -45,6 +45,8 @@ export default App;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   .sidebar-column {
+    position: sticky;
+    top: calc(3.25rem - 0.75rem);
     padding-bottom: 0;
     height: calc(100vh - 3.25rem + 0.75rem);
   }
