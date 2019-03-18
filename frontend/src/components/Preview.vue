@@ -64,7 +64,6 @@ export default Preview;
     font-size: 2rem;
     padding-bottom: .2rem;
     border-bottom: 1px solid $border;
-    margin-top: 0;
     margin-bottom: 2rem;
   }
   /deep/ h2 {
@@ -123,6 +122,9 @@ export default Preview;
     margin-top: 1.5rem;
   }
   /deep/ pre {
+    margin: 1.5rem 0;
+  }
+  /deep/ img {
     margin: 1.5rem 0;
   }
 }
