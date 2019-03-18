@@ -36,6 +36,7 @@
 <script>
 import axios from 'axios';
 import SearchInput from './SearchInput.vue';
+import NotificationMixin from '@/mixins/NotificationMixin';
 
 const Navbar = {
   props: {
@@ -56,12 +57,13 @@ const Navbar = {
           .then(() => {
             window.location.href = '/login';
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
+            this.notifyError('退会できませんでした。時間をおいて再度お試しください。');
           });
       }
     },
   },
+  mixins: [NotificationMixin],
 };
 
 export default Navbar;

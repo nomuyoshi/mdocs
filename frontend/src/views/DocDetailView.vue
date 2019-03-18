@@ -74,5 +74,3 @@ const DocDetailView = {
   mixins: [NotificationMixin],
 };
 
-export default DocDetailView;
-</script>

@@ -18,6 +18,7 @@
 
 <script>
 import axios from 'axios';
+import NotificationMixin from '@/mixins/NotificationMixin';
 
 const TagList = {
   data() {
@@ -31,9 +32,10 @@ const TagList = {
         this.tags = response.data;
       })
       .catch(() => {
-        console.error('error');
+        this.notifyError('タグの取得に失敗しました。時間をおいて再度お試しください。');
       });
   },
+  mixins: [NotificationMixin],
 };
 
 export default TagList;

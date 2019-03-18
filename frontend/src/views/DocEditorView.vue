@@ -107,7 +107,6 @@ const DocEditorView = {
       };
     },
     onScroll(event, el) {
-      console.log('scroll');
       this.scrollPercents = el.scrollTop / (el.scrollHeight - el.clientHeight);
     },
   },
