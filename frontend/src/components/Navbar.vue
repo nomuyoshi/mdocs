@@ -1,9 +1,8 @@
 <template>
-  <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand" :style="{ width: brandWidth + 'px'}">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand has-background-grey-darker" :style="{ width: brandWidth + 'px'}">
       <a class="navbar-item" href="/" style="width: 100%;">
-        <h1 class="has-text-white is-size-3">mDoc</h1>
-        <!--            <img src="{% static 'images/logo.png' %}" alt="mDocロゴ" /> -->
+        <h1 class="has-text-white has-text-weight-bold is-size-3">mDoc</h1>
       </a>
     </div>
     <div id="navbar-menu" class="navbar-menu">
@@ -13,12 +12,10 @@
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item">
-          <router-link class="has-text-white" to="/contact">
-            <b-icon icon="envelope" size="is-small"></b-icon>
-            <span>お問い合わせ</span>
-          </router-link>
-        </div>
+        <router-link class="navbar-item" to="/contact">
+          <b-icon icon="envelope" size="is-small"></b-icon>
+          <span>お問い合わせ</span>
+        </router-link>
         <div class="navbar-item has-dropdown is-hoverable">
           <span class="navbar-link">
             メニュー
@@ -66,3 +63,9 @@ const Navbar = {
 
 export default Navbar;
 </script>
+
+<style lang="scss" scoped>
+#navbar-menu {
+  border-bottom: 1px solid #DBDBDB;
+}
+</style>
