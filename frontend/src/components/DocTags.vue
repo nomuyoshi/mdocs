@@ -2,7 +2,7 @@
   <div class="level">
     <div class="level-left">
       <b-taglist class="level-item">
-        <b-tag v-for="tag in doc.tags" type="is-primary" :key="tag.id">
+        <b-tag v-for="tag in doc.tags" :key="tag.id">
           {{ tag.name }}
         </b-tag>
       </b-taglist>
