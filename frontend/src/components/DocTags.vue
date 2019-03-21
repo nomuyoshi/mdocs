@@ -28,3 +28,9 @@ const DocTags = {
 
 export default DocTags;
 </script>
+
+<style lang="scss" scoped>
+.level {
+  margin-top: .5rem;
+}
+</style>

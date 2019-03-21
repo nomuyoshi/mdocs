@@ -5,7 +5,7 @@
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
         <section class="section">
           <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
-            <h3 class="title">{{ doc.title }}</h3>
+            <p class="is-size-4 has-text-grey-dark has-text-weight-semibold">{{ doc.title }}</p>
           </router-link>
           <doc-tags :doc="doc" />
         </section>
@@ -71,6 +71,9 @@ li.doc-item {
   border-top: 1px solid #B5B5B5;
   &:last-child {
     border-bottom: 1px solid #B5B5B5;
+  }
+  .section {
+    padding: 1.5rem;
   }
 }
 </style>
