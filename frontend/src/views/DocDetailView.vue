@@ -6,15 +6,15 @@
           <p class="title">{{ doc.title }}</p>
         </div>
         <div class="level-item">
-          <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button">
-            <b-icon icon="edit" type="is-info"></b-icon>
+          <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light">
+            編集
           </router-link>
         </div>
       </div>
       <div class="level-right">
         <div class="level-item">
-          <button class="button" type="button" @click="onClickDelete">
-            <b-icon icon="trash-alt" type="is-danger"></b-icon>
+          <button class="button is-danger" type="button" @click="onClickDelete">
+            削除
           </button>
         </div>
       </div>
