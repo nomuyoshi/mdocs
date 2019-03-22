@@ -1,6 +1,7 @@
 <template>
   <div>
     <p v-if="isSearchMode"><strong>「{{ this.query.title }}」検索結果</strong></p>
+    <p v-if="isTagFilterMode"><strong>「{{ this.query.tag }}」タグで絞り込み中</strong></p>
     <ul>
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
         <section class="section">
@@ -13,7 +14,7 @@
     </ul>
     <article class="message" v-if="noData">
       <div class="message-body">
-        <div v-if="isSearchMode">
+        <div v-if="isSearchMode || isTagFilterMode">
           <p>見つかりませんでした・・・</p>
         </div>
         <div v-else>
@@ -41,7 +42,10 @@ const DocList = {
   },
   computed: {
     isSearchMode() {
-      return this.query.title;
+      return !!this.query.title;
+    },
+    isTagFilterMode() {
+      return !!this.query.tag;
     },
     docList() {
       return this.$store.state.docs;

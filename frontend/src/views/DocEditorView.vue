@@ -3,7 +3,6 @@
     <b-field>
       <b-input
         v-model="doc.title"
-        size="is-medium"
         placeholder="タイトル"
         maxlength="100"
         required>
@@ -42,6 +41,11 @@ import Preview from '@/components/Preview.vue';
 import TagInput from '@/components/TagInput.vue';
 import NotificationMixin from '@/mixins/NotificationMixin';
 
+const labelNames = {
+  body: '本文',
+  title: 'タイトル',
+};
+
 const DocEditorView = {
   data() {
     return {
@@ -52,7 +56,6 @@ const DocEditorView = {
         tags: [],
       },
       scrollPercents: 0,
-      errors: {},
     };
   },
   computed: {
@@ -86,8 +89,11 @@ const DocEditorView = {
           this.$router.push('/');
         })
         .catch((error) => {
-          this.errors = error.response.data;
-          this.notifyError('入力内容を確認してください');
+          const errors = error.response.data;
+          Object.keys(errors).forEach((key) => {
+            const message = `${labelNames[key]}: ${errors[key].join('。')}`;
+            this.notifyError(message);
+          });
         });
     },
     buildSubmitData() {
@@ -121,14 +127,11 @@ const DocEditorView = {
 export default DocEditorView;
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #editor {
   height: calc(100vh - 250px);
   max-height: calc(100vh - 250px);
 }
-</style>
-
-<style lang="scss" scoped>
 hr { margin: 5px 0; }
 .field { margin-bottom: 0; }
 .section { padding-top: 1.5rem; }
