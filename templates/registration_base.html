@@ -18,5 +18,12 @@
       {% block content %}
       {% endblock %}
     </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <a href="{% url 'terms' %}">利用規約</a> |
+        <a href="{% url 'privacy_policy' %}">プライバシポリシー</a> |
+        <span>Copyright (c) mDoc運営事務局 2019 All Rights Reserved.</span>
+      </div>
+    </footer>
   </body>
 </html>
