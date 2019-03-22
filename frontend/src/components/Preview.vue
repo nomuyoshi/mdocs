@@ -78,6 +78,8 @@ export default Preview;
   /deep/ h6 { font-size: 1.0rem; }
   /deep/ ul {
     list-style: disc inside none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: 1.5rem;
     ul {
       list-style-type: circle;
@@ -87,6 +89,8 @@ export default Preview;
     }
   }
   /deep/ ol {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: 2.5rem;
   }
   /deep/ blockquote {

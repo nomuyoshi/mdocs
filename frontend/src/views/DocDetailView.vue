@@ -1,24 +1,19 @@
 <template>
   <div class="section">
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <p class="title">{{ doc.title }}</p>
-        </div>
-        <div class="level-item">
-          <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light">
-            編集
-          </router-link>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level-item">
-          <button class="button is-danger" type="button" @click="onClickDelete">
-            削除
-          </button>
-        </div>
-      </div>
+    <div class="is-pulled-left doc-title">
+      <p class="title is-4">{{ doc.title }}</p>
     </div>
+    <div class="is-pulled-right action-button">
+      <button class="button is-danger" type="button" @click="onClickDelete">
+        削除
+      </button>
+    </div>
+    <div class="is-pulled-right action-button">
+      <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light">
+        編集
+      </router-link>
+    </div>
+    <div class="is-clearfix"></div>
     <doc-tags :doc="doc" />
     <hr/>
     <preview :markdown="doc.body"/>
@@ -76,3 +71,12 @@ const DocDetailView = {
 
 export default DocDetailView;
 </script>
+
+<style lang="scss" scoped>
+.doc-title {
+  max-width: 80%;
+}
+.action-button {
+  margin: 0 1rem;
+}
+</style>
