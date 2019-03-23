@@ -52,14 +52,17 @@ const DocDetailView = {
   },
   methods: {
     onClickDelete() {
-      axios.delete(`/docs/${this.doc.id}/`)
-        .then(() => {
-          this.notifySuccess('削除成功');
-          this.$router.push('/');
-        })
-        .catch(() => {
-          this.notifyError('削除できませんでした。時間をおいて再度お試しください。');
-        });
+      // eslint-disable-next-line no-alert
+      if (window.confirm('削除します。よろしいですか？')) {
+        axios.delete(`/docs/${this.doc.id}/`)
+          .then(() => {
+            this.notifySuccess('削除成功');
+            this.$router.push('/');
+          })
+          .catch(() => {
+            this.notifyError('削除できませんでした。時間をおいて再度お試しください。');
+          });
+      }
     },
   },
   components: {

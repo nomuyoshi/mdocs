@@ -4,7 +4,6 @@
       <b-input
         v-model="doc.title"
         placeholder="タイトル"
-        maxlength="100"
         required>
       </b-input>
     </b-field>
