@@ -49,7 +49,8 @@ class TagListView(generics.ListAPIView):
 
     def get_queryset(self):
         current_user = self.request.user
-        query_set = current_user.tag_set.annotate(documents_count=Count('document')).order_by('id').all()
+        query_set = current_user.tag_set.annotate(documents_count=Count('document'))\
+                      .filter(documents_count__gt=0).order_by('id').all()
 
         return query_set
 
