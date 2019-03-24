@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <notifications group="notifications" position="bottom right" />
-    <navbar v-if="navbarVisible" brand-width="230" />
+    <navbar v-if="navbarVisible"/>
     <div class="columns">
       <div class="column is-narrow sidebar-column" v-if="sidebarVisible">
         <sidebar side-width="230" />
