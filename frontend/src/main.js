@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Buefy from 'buefy';
 import axios from 'axios';
+import VueAnalytics from 'vue-analytics';
 import Notifications from 'vue-notification';
 
 import router from './router';
@@ -19,6 +20,11 @@ Vue.use(Buefy, {
   defaultIconPack: 'fas',
 });
 Vue.use(Notifications);
+
+Vue.use(VueAnalytics, {
+  id: 'UA-136831202-1',
+  router,
+});
 
 Vue.config.productionTip = false;
 
