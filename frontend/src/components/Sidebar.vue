@@ -30,7 +30,7 @@ export default Sidebar;
 <style lang="scss" scoped>
 #sidebar {
   height: 100%;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 0 1rem;
   margin: 0;
 
   .new-doc-button {

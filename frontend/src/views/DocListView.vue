@@ -38,3 +38,9 @@ const DocListView = {
 
 export default DocListView;
 </script>
+
+<style lang="scss" scoped>
+.section {
+  padding: 2rem 0 0 0;
+}
+</style>

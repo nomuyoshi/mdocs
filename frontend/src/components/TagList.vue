@@ -5,7 +5,7 @@
       タグ
     </p>
     <ul>
-      <li v-for="tag in tags" :key="tag.id" class="tag-item">
+      <li v-for="tag in tags" :key="tag.id" class="tag-item is-size-7">
         <router-link
           :to="{ name: 'doc-list', query: { tag: tag.name }}"
         >
@@ -44,6 +44,8 @@ export default TagList;
 <style lang="scss" scoped>
 .tag-list {
   color: white !important;
+  height: 85%;
+  overflow-y: auto;
   .tag-item {
     padding: .5rem;
     border-bottom: solid 1px #363636;
