@@ -9,7 +9,10 @@
       </button>
     </div>
     <div class="is-pulled-right action-button">
-      <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light is-rounded">
+      <router-link
+        :to="{ name: 'doc-edit', params: { id: doc.id } }"
+        class="button is-light is-rounded"
+      >
         編集
       </router-link>
     </div>
