@@ -23,6 +23,9 @@ Vue.use(Notifications);
 
 Vue.use(VueAnalytics, {
   id: 'UA-136831202-1',
+  debug: {
+    sendHitTask: process.env.NODE_ENV === 'production',
+  },
   router,
 });
 
