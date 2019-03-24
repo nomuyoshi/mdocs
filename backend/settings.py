@@ -25,8 +25,6 @@ env = environ.Env(
 environ.Env.read_env()
 DEBUG = env('DEBUG')
 
-SECURE_SSL_REDIRECT = not DEBUG
-SECURE_SSL_HOST = ['www.mdoc.me']
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -212,3 +210,5 @@ if DEBUG:
 else:
     import django_heroku
     django_heroku.settings(locals())
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
