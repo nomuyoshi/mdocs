@@ -4,12 +4,12 @@
       <p class="title is-4">{{ doc.title }}</p>
     </div>
     <div class="is-pulled-right action-button">
-      <button class="button is-danger" type="button" @click="onClickDelete">
+      <button class="button is-danger is-rounded" type="button" @click="onClickDelete">
         削除
       </button>
     </div>
     <div class="is-pulled-right action-button">
-      <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light">
+      <router-link :to="{ name: 'doc-edit', params: { id: doc.id } }" class="button is-light is-rounded">
         編集
       </router-link>
     </div>

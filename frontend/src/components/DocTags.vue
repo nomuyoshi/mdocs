@@ -2,15 +2,15 @@
   <div class="level">
     <div class="level-left">
       <b-taglist class="level-item">
-        <b-tag v-for="tag in doc.tags" :key="tag.id">
+        <b-tag v-for="tag in doc.tags" :key="tag.id" rounded>
           {{ tag.name }}
         </b-tag>
       </b-taglist>
     </div>
     <div class="level-right">
       <b-taglist class="level-item">
-        <b-tag>作成日: {{ doc.created_at | datetimeFormat }}</b-tag>
-        <b-tag>更新日: {{ doc.updated_at | datetimeFormat }}</b-tag>
+        <b-tag rounded>作成日: {{ doc.created_at | datetimeFormat }}</b-tag>
+        <b-tag rounded>更新日: {{ doc.updated_at | datetimeFormat }}</b-tag>
       </b-taglist>
     </div>
   </div>
