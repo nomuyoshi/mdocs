@@ -25,6 +25,8 @@ env = environ.Env(
 environ.Env.read_env()
 DEBUG = env('DEBUG')
 
+SECURE_SSL_REDIRECT = not DEBUG
+SECURE_SSL_HOST = ['www.mdoc.me']
 ALLOWED_HOSTS = ['*']
 
 # Application definition
