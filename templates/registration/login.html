@@ -1,4 +1,5 @@
 {% extends 'registration_base.html' %}
+{% load static %}
 {% block content %}
 <section class="hero is-medium is-dark is-bold">
   <div class="hero-body">
@@ -11,8 +12,8 @@
         <p class="subtitle">
         mDocはMarkDownで書けるクローズドなドキュメント管理ツールです。<br>
         公開されないので、気軽に日々の学び・気付きを溜めることができます。<br>
-        公開するほどではないけれど、自分にとっては価値のある情報・知識などを<br>
-        どんどんためていきましょう！！
+        得た知識をどんどんためていきましょう！！<br>
+        料金は無料。
         </p>
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Markdownで書ける自分だけのクローズドなドキュメント管理サービスmDoc" data-via="mDocSupportTeam" data-hashtags="ドキュメント管理" data-lang="ja" data-show-count="false">Tweet</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -37,8 +38,29 @@
             </p>
           </div>
         {% endif %}
-        {% endblock %}
       </div>
     </div>
   </div>
 </section>
+<section class="section">
+  <h2 class="has-text-centered title is-2">mDocは職場、自宅どこでも使える<h2>
+  <div class="container">
+    <div class="columns">
+      <div class="column is-7">
+        <img width="600px" src="{% static "images/mdoc-screenshot.png" %}" alt="mDoc サービス紹介"/>
+      </div>
+      <div class="column is-5">
+        <p class="is-size-5 has-text-weight-semibold">
+        PCでの作業を主とする方のためのドキュメント管理ツールです。
+        </p>
+        <br>
+        <p class="is-size-6">
+        ・複数のPCを使うので情報をまとめたい！<br>
+        ・仕事中に思いついたアイデアを残したい！<br>
+        ・仕事で学んだ知識を溜めておきたい！<br>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
