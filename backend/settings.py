@@ -25,8 +25,6 @@ env = environ.Env(
 environ.Env.read_env()
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -207,8 +205,10 @@ if DEBUG:
             'PORT': env('DB_PORT'),
         }
     }
+    ALLOWED_HOSTS = ['*']
 else:
     import django_heroku
     django_heroku.settings(locals())
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
+    ALLOWED_HOSTS = ['www.mdoc.me']
