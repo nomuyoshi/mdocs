@@ -2,8 +2,8 @@
 {% block content %}
 <section class="hero is-medium is-dark is-bold">
   <div class="hero-body">
-    <div class="container">
-      <div class="is-pulled-left">
+    <div class="columns">
+      <div class="column is-7 is-offset-1">
         <div>
           <h1 class="title is-1">mDoc</h1>
           <h2 class="title is-2">Stock Knowledge!!<h2>
@@ -14,8 +14,10 @@
         公開するほどではないけれど、自分にとっては価値のある情報・知識などを<br>
         どんどんためていきましょう！！
         </p>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Markdownで書ける自分だけのクローズドなドキュメント管理サービスmDoc" data-via="mDocSupportTeam" data-hashtags="ドキュメント管理" data-lang="ja" data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </div>
-      <div class="is-pulled-right">
+      <div class="column is-4">
         {% if user.is_authenticated %}
           すでにログインしています。
         {% else %}
