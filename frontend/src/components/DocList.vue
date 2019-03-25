@@ -12,7 +12,7 @@
         </section>
       </li>
     </ul>
-    <article class="message" v-if="noData">
+    <article class="message" v-if="noData && !isLoading">
       <div class="message-body">
         <div v-if="isSearchMode || isTagFilterMode">
           <p>見つかりませんでした・・・</p>
@@ -28,13 +28,23 @@
         </div>
       </div>
     </article>
+    <b-loading :active.sync="isLoading"></b-loading>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import DocTags from './DocTags.vue';
+import NotificationMixin from '@/mixins/NotificationMixin';
+
 
 const DocList = {
+  data() {
+    return {
+      isLoading: false,
+      docs: [],
+    };
+  },
   props: {
     query: {
       type: Object,
@@ -48,23 +58,41 @@ const DocList = {
       return !!this.query.tag;
     },
     docList() {
-      return this.$store.state.docs;
+      return this.docs;
     },
     noData() {
-      return this.$store.state.docs.length === 0;
+      return this.docs.length === 0;
     },
   },
   mounted() {
-    this.$store.dispatch('fetchDocs', this.query);
+    this.fetchDocs(this.query);
   },
   watch: {
     query(newQuery) {
-      this.$store.dispatch('fetchDocs', newQuery);
+      this.fetchDocs(newQuery);
+    },
+  },
+  methods: {
+    fetchDocs(params = {}) {
+      this.isLoading = true;
+      axios.get('/docs/', {
+        params,
+      })
+        .then((response) => {
+          this.docs = response.data;
+        })
+        .catch(() => {
+          this.notifyError('読み込みに失敗しました。');
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     },
   },
   components: {
     DocTags,
   },
+  mixins: [NotificationMixin],
 };
 
 export default DocList;
