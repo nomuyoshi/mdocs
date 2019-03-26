@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'backend.middlewares.require_login_middleware.RequoreLoginMiddleware',
+    'backend.middlewares.redirect_root_domain_middleware.RedirectRootDomainMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -211,4 +212,4 @@ else:
     django_heroku.settings(locals())
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
-    ALLOWED_HOSTS = ['mdoc.me']
+    ALLOWED_HOSTS = ['www.mdoc.me', 'mdoc.me']
