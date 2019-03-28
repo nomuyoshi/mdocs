@@ -9,6 +9,7 @@
 
 <script>
 import marked from 'marked';
+import renderer from '../marked/renderer';
 
 const Preview = {
   props: {
@@ -26,7 +27,11 @@ const Preview = {
   },
   computed: {
     compiledHtml() {
-      return marked(this.markdown, { sanitize: true, breaks: true });
+      return marked(this.markdown, {
+        sanitize: true,
+        breaks: true,
+        renderer,
+      });
     },
     noData() {
       return this.markdown.length === 0;
@@ -49,6 +54,8 @@ export default Preview;
 
 <style lang="scss" scoped>
 @import '~bulma/sass/utilities/_all.sass';
+@import '~highlight.js/styles/monokai-sublime.css';
+
 .preview-scroll {
   height: calc(100vh - 250px);
   overflow-y: auto;
@@ -126,7 +133,8 @@ export default Preview;
     margin-top: 1.5rem;
   }
   /deep/ pre {
-    margin: 1.5rem 0;
+    margin: .5rem 0;
+    background-color: transparent;
   }
   /deep/ img {
     margin: 1.5rem 0;
