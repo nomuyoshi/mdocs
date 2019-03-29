@@ -44,7 +44,7 @@ export default TagList;
 <style lang="scss" scoped>
 .tag-list {
   color: white !important;
-  height: 85%;
+  height: 75%;
   overflow-y: auto;
   .tag-item {
     padding: .5rem;

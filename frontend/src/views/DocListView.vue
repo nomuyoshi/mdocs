@@ -27,6 +27,7 @@ const DocListView = {
       return {
         title: this.$route.query.title,
         tag: this.$route.query.tag,
+        pin: this.$route.query.pin,
       };
     },
   },

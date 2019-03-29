@@ -28,6 +28,9 @@ class DocumentViewSet(viewsets.ModelViewSet):
         if params.get('title', None):
             query_set = query_set.filter(title__icontains=params.get('title'))
 
+        if params.get('pin', None):
+            query_set = query_set.filter(pin=True)
+
         return query_set.prefetch_related('tags').order_by('-created_at')
 
     def perform_create(self, serializer):

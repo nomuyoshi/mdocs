@@ -5,12 +5,14 @@
         <b-icon icon="plus"></b-icon><span>ドキュメント作成</span>
       </router-link>
     </div>
+    <pin-link/>
     <tag-list/>
   </nav>
 </template>
 
 <script>
 import TagList from './TagList.vue';
+import PinLink from './PinLink.vue';
 
 const Sidebar = {
   props: {
@@ -20,6 +22,7 @@ const Sidebar = {
     },
   },
   components: {
+    PinLink,
     TagList,
   },
 };
