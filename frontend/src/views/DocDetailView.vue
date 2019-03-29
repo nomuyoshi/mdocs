@@ -16,6 +16,9 @@
         編集
       </router-link>
     </div>
+    <div class="is-pulled-right action-button">
+      <pin :doc="doc" />
+    </div>
     <div class="is-clearfix"></div>
     <doc-tags :doc="doc" />
     <hr/>
@@ -28,6 +31,7 @@ import axios from 'axios';
 
 import DocTags from '@/components/DocTags.vue';
 import Preview from '@/components/Preview.vue';
+import Pin from '@/components/Pin.vue';
 import NotificationMixin from '@/mixins/NotificationMixin';
 
 const DocDetailView = {
@@ -38,6 +42,7 @@ const DocDetailView = {
         title: '',
         body: '',
         tags: [],
+        pin: null,
         created_at: '',
         updated_at: '',
       },
@@ -71,6 +76,7 @@ const DocDetailView = {
   components: {
     DocTags,
     Preview,
+    Pin,
   },
   mixins: [NotificationMixin],
 };

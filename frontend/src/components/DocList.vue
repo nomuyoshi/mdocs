@@ -5,9 +5,15 @@
     <ul>
       <li class="doc-item" v-for="doc in docList" :key="doc.id">
         <section class="section">
-          <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
-            <p class="is-size-4 has-text-grey-dark has-text-weight-semibold">{{ doc.title }}</p>
-          </router-link>
+          <div class="is-pulled-left is-size-4 has-text-weight-semibold">
+            <router-link :to="{ name: 'doc-detail', params: { id: doc.id } }">
+              <span class="has-text-grey-dark">{{ doc.title }}</span>
+            </router-link>
+          </div>
+          <div class="is-pulled-right">
+            <pin :doc="doc" />
+          </div>
+          <div class="is-clearfix" />
           <doc-tags :doc="doc" />
         </section>
       </li>
@@ -36,6 +42,7 @@
 import axios from 'axios';
 import DocTags from './DocTags.vue';
 import NotificationMixin from '@/mixins/NotificationMixin';
+import Pin from './Pin.vue';
 
 
 const DocList = {
@@ -91,6 +98,7 @@ const DocList = {
   },
   components: {
     DocTags,
+    Pin,
   },
   mixins: [NotificationMixin],
 };

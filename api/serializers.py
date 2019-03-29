@@ -13,7 +13,7 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        fields = ('id', 'user', 'title', 'body', 'tags', 'created_at', 'updated_at')
+        fields = ('id', 'user', 'title', 'body', 'tags', 'pin','created_at', 'updated_at')
         read_only_fields = ('id', 'user')
 
     def create(self, validated_data):
@@ -24,9 +24,10 @@ class DocumentSerializer(serializers.ModelSerializer):
         return doc
 
     def update(self, instance, validated_data):
-        tags_data = validated_data.pop('tags')
-        tags = self.__tag_list(tags_data, validated_data['user'])
-        instance.tags.set(tags)
+        if 'tags' in validated_data:
+            tags_data = validated_data.pop('tags')
+            tags = self.__tag_list(tags_data, validated_data['user'])
+            instance.tags.set(tags)
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
