@@ -8,7 +8,7 @@
 import axios from 'axios';
 import NotificationMixin from '../mixins/NotificationMixin';
 
-const Pin = {
+const PinButton = {
   data() {
     return { isPinned: this.doc.pin };
   },
@@ -45,5 +45,5 @@ const Pin = {
   mixins: [NotificationMixin],
 };
 
-export default Pin;
+export default PinButton;
 </script>

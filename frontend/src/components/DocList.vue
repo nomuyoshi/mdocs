@@ -11,7 +11,7 @@
             </router-link>
           </div>
           <div class="is-pulled-right">
-            <pin :doc="doc" />
+            <pin-button :doc="doc" />
           </div>
           <div class="is-clearfix" />
           <doc-tags :doc="doc" />
@@ -42,7 +42,7 @@
 import axios from 'axios';
 import DocTags from './DocTags.vue';
 import NotificationMixin from '@/mixins/NotificationMixin';
-import Pin from './Pin.vue';
+import PinButton from './PinButton.vue';
 
 
 const DocList = {
@@ -98,7 +98,7 @@ const DocList = {
   },
   components: {
     DocTags,
-    Pin,
+    PinButton,
   },
   mixins: [NotificationMixin],
 };
