@@ -8,11 +8,12 @@ const statsFilename = process.env.NODE_ENV === 'development' ? 'webpack-stats-de
 module.exports = {
   publicPath,
   outputDir: path.resolve(__dirname, '../staticfiles/bundles/'),
-  pluginOptions: {
-    'style-resources-loader': {
-      preProcessor: 'scss',
-      patterns: [path.resolve(__dirname, './src/assets/application.scss')],
-    },
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `@import "@/assets/application.scss";`
+      }
+    }
   },
   chainWebpack: (config) => {
     config.optimization.splitChunks(false);
