@@ -160,6 +160,7 @@ WEBPACK_LOADER = {
 #########################
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
 ########################

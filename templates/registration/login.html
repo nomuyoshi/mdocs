@@ -1,9 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'registration_base.html' %}
 {% block content %}
-<h2>Login</h2>
-{% if user.is_authenticated %}
-  すでにログインしています。
-{% else %}
-  <a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
-{% endif %}
-{% endblock %}
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter has-text-centered">
+    <h1 class="is-size-2">mDocにログイン</h1>
+    <hr>
+    {% if user.is_authenticated %}
+      すでにログインしています。
+    {% else %}
+      <a href="{% url "social:begin" "google-oauth2" %}" class="button is-medium has-text-white google">
+        <span class="icon">
+          <i class="fab fa-google"></i>
+        </span>
+        <span>Googleアカウントでログイン</span>
+      </a>
+    {% endif %}
+    {% endblock %}
+  </div>
+</div>
